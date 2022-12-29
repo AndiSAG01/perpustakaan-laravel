@@ -16,7 +16,7 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => rand(1, 9),
+            'category_id' => rand(1, 8),
             'barcode' => Str::random(10),
             'image' => $this->faker->imageUrl(),
             'isbn' => $this->faker->ean13(),

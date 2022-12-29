@@ -23,14 +23,14 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col mb-3 d-none">
+                    {{-- <div class="col mb-3 d-none">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" id="image" class="form-control" value="{{ $book->image }}"
                             name="image">
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="col mb-3">
                         <label for="isbn" class="form-label">ISBN</label>
@@ -43,7 +43,7 @@
                     <div class="mb-3">
                         <label class="form-label">Kategori Buku</label> <br>
                         <select class="form-select form-select" name="category_id">
-                            <option selected disabled value="{{ $book->category->id }}" >{{ $book->category->name }}</option>
+                            <option selected value="{{ $book->category->id }}" >{{ $book->category->name }}</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
                                     {{ old('category_id') == $book->id ? 'selected' : '' }}>{{ $category->name }}

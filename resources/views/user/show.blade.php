@@ -1,21 +1,12 @@
 <x-app>
     <div class="col-xxl">
         <div class="card">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block">
-                    <strong>{{ $message }}</strong>
-                </div>
-            @elseif ($errors->all())
-                <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
-            @endif
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0">Detail User</h5> <small class="text-muted float-end">Merged input
                     group</small>
             </div>
             <div class="card-body">
                 <form action="/user/{{ $user->id }}" method="POST">
-                    {{-- @csrf
-                @method('PUT') --}}
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-noId">no. identitas</label>
                         <div class="col-sm-10">

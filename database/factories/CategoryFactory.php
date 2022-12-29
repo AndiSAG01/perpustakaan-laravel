@@ -15,7 +15,7 @@ class CategoryFactory extends Factory
         
         return [
             'code' => $this->faker->unique()->ean8(),
-            'name' => $this->faker->unique()->word(),
+            'name' => $this->faker->unique()->word(3, true),
         ];
     }
 }

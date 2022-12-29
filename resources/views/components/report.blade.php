@@ -51,13 +51,17 @@
 
     <style>
         @media print {
-            body aside {
-                visibility: hidden;
+            footer .layout-page aside nav{
+                display: none;
+            }
+             .car{
+                display: block;
             }
 
             #print table {
                 width: 100%;
                 visibility: visible;
+                position: relative;
             }
 
         }
@@ -71,7 +75,7 @@
         <div class="layout-container">
             <!-- Menu -->
 
-            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme d-print-none">
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
                         <span class="app-brand-logo demo">
@@ -139,7 +143,7 @@
             <div class="layout-page">
                 <!-- Navbar -->
 
-                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme d-print-none"
                     id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -225,7 +229,7 @@
                 </div>
                 <!-- Footer -->
                 <footer class="content-footer footer bg-footer-theme">
-                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column d-print-none">
                         <div class="mb-2 mb-md-0">
                             ©
                             <script>

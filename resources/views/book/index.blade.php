@@ -16,7 +16,6 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Barcode Buku</th>
                         <th>Kategori Buku</th>
                         <th>Judul Buku</th>
                         <th>Action</th>
@@ -26,8 +25,6 @@
                     @foreach ($books as $no => $item)
                         <tr>
                             <td>{{ ++$no }}</td>
-                            <td>                   
-                            </td>
                             <td>{{ $item->category->name ?? ''}}</td>
                             <td>{{ $item->title }}</td>
                             <td class="d-flex gap-1">
