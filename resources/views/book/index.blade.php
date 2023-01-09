@@ -1,4 +1,5 @@
 <x-app>
+    
     <div class="card-body">
         @if ($message = Session::get('success'))
             <div class="alert alert-primary alert-block">
@@ -10,7 +11,7 @@
         {{-- form --}}
         @include('book.store')
         {{-- endform --}}
-        <h5 class="card-header">Table Buku</h5>
+        <h5 class="card-header fw-bold text-center">Table Buku</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>

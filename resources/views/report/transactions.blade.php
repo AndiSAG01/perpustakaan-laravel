@@ -1,6 +1,6 @@
 <x-report>
     <div class="card-body">
-        <h3 class="card-header text-center">Table Peminjaman Buku</h3>
+        <h3 class="card-header fw-bold text-center">Table Peminjaman Buku</h3>
 <div class="table-responsive text-nowrap" id="printableArea">
     <a class="btn btn-outline-primary d-print-none" href="javascript:void(0);" onclick="printPageArea('printableArea')" ><i class='bx bxs-printer' ></i></a>
     <table id="myTable" class="table">

@@ -88,14 +88,14 @@
 
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <h5 class="card-header">Table Surat Keterangan</h5>
+    <h5 class="card-header fw-bold text-center">Table Surat Keterangan</h5>
     <div class="table-responsive text-nowrap">
         <table id="myTable" class="table">
             <thead>

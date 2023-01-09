@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <h5 class="card-header">Table Pembayaran Denda Buku</h5>
+        <h5 class="card-header fw-bold text-center">Table Pembayaran Denda Buku</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table text-center">
                 <thead>

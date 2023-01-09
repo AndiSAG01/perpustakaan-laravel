@@ -43,7 +43,7 @@
     <li class="menu-item ">
         <a href="/income" class="menu-link">
             <i class="menu-icon tf-icons bx bx-money"></i>
-            <div data-i18n="income">Pemasukkan</div>
+            <div data-i18n="income">Denda</div>
         </a>
     </li>
 
@@ -72,7 +72,7 @@
             </li>
             <li class="menu-item">
                 <a href="/report/incomes" class="menu-link">
-                    <div data-i18n="incomes">Pemasukkan</div>
+                    <div data-i18n="incomes">Denda</div>
                 </a>
             </li>
             

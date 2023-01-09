@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <h5 class="card-header">Table Kategori Buku</h5>
+        <h5 class="card-header fw-bold text-center">Table Kategori Buku</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>

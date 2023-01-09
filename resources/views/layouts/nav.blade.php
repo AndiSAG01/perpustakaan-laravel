@@ -14,6 +14,4 @@
             <div data-i18n="myprofile">My Profile</div>
         </a>
     </li>
-
-    
 </ul>

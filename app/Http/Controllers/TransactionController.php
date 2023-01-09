@@ -21,7 +21,8 @@ class TransactionController extends Controller
     public function index()
     {
         return view('transaction.index', [
-            'transactions' => Transaction::orderBy('id', 'DESC')->get(),
+            'entry' => Transaction::where('status', 0)->get(),
+            'return' => Transaction::where('status', 1)->get(),
             'users' => User::all(),
             'books' => Book::all(),
             'day' => Carbon::now()->format('Y-m-d'),

@@ -24,7 +24,7 @@
               </div>
             </div>
           </div>
-        <h5 class="card-header">Table User</h5>
+        <h5 class="card-header fw-bold text-center">Table User</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>
