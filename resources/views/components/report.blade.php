@@ -51,18 +51,11 @@
 
     <style>
         @media print {
-            footer .layout-page aside nav{
-                display: none;
-            }
-             .car{
-                display: block;
-            }
-
-            #print table {
-                width: 100%;
-                visibility: visible;
-                position: relative;
-            }
+            
+        @page {
+        size: A4;
+        }
+        
 
         }
     </style>
@@ -77,7 +70,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme d-print-none">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="/" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">

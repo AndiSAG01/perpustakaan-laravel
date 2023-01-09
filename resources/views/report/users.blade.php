@@ -1,9 +1,9 @@
 <x-report>
     <div class="card-body">
         <h3 class="card-header text-center">Table User</h3>
-        <div class="table-responsive text-nowrap">
-            <button class="btn btn-outline-primary d-print-none" onClick="window.print()"><i class='bx bxs-printer' ></i>
-            </button>
+        <div class="table-responsive text-nowrap" id="printableArea">
+            <a class="btn btn-outline-primary d-print-none" href="javascript:void(0);" onclick="printPageArea('printableArea')"><i class='bx bxs-printer' ></i></a>
+
             <table id="myTable" class="table">
                 <thead>
                     <tr>
@@ -46,5 +46,13 @@
             </table>
         </div>
     </div>
-    
+    <script>
+        function printPageArea(areaID) {
+            var printContent = document.getElementById(areaID).innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+    </script>
 </x-report>

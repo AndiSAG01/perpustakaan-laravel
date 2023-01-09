@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,6 +22,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('home',[
+            'user' => User::count(),
+            'category' => Category::count(),
+            'book' => Book::count(),
+            'transactions' => Transaction::count(),
+        ]);
     }
 }
