@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editedtransaction">
-    Edit
+    Edit Transaksi
 </button>
 
 <!-- Modal -->
@@ -28,7 +28,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="user_id" class="form-label">Judul Buku</label>
+                        <label for="user_id" class="form-label">Nama Peminjam</label>
                         <select class="form-select form-select-lg" name="user_id" id="user_id">
                             <option value="{{ $transaction->user->id }}" selected>{{ $transaction->user->name }}</option>
                             @foreach ($users as $item)

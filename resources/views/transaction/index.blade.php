@@ -48,6 +48,7 @@
         {{-- endform --}}
         <h5 class="card-header text-center">Table Transaksi Buku</h5>
         <div class="nav-align-top mb-4 ">
+
             <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
@@ -60,10 +61,11 @@
                         aria-selected="false" tabindex="-1">Pengembalian</button>
                 </li>
             </ul>
-            <div class="tab-content">
+            
+            <div class="tab-content mt-2">
                 <div class="tab-pane fade show active" id="navs-pills-top-Peminjaman" role="tabpanel">
                     <div class="table-responsive text-nowrap">
-                        <table id="myTable" class="table text-center">
+                        <table id="myTable" class="table">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -96,7 +98,7 @@
                                         <td>{{ $item->lateDay }}</td>
                                         <td class="d-flex gap-1">
                                             <a href="/transaction/{{ $item->id }}/show"
-                                                class="btn btn-info">Show</a>
+                                                class="btn btn-info btn-sm">Show</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,7 +108,7 @@
                 </div>
                 <div class="tab-pane fade" id="navs-pills-top-Pengembalian" role="tabpanel">
                     <div class="table-responsive text-nowrap">
-                        <table id="myTable" class="table text-center">
+                        <table id="myTable" class="table">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -139,7 +141,7 @@
                                         <td>{{ $item->lateDay }}</td>
                                         <td class="d-flex gap-1">
                                             <a href="/transaction/{{ $item->id }}/show"
-                                                class="btn btn-info">Show</a>
+                                                class="btn btn-info btn-sm">Show</a>
                                         </td>
                                     </tr>
                                 @endforeach

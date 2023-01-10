@@ -8,7 +8,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edited User</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/user/{{ $user->id }}" method="POST">
@@ -40,8 +40,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="birthday"
-                        class="form-label">birthday</label>
+                        <label for="birthday" class="form-label">birthday</label>
                         <input type="date" id="birthday" class="form-control" value="{{ $user->birthday }}"
                             name="birthday">
                         @error('birthday')
@@ -52,16 +51,12 @@
                         <label for="gender" class="form-label">Jenis Kelamin</label> <br>
                         <div class="form-check form-check-inline mt-3">
                             <input class="form-check-input" type="radio" name="gender" id="Laki-Laki" value="0"
-                                @if ($user->gender == '0')
-                                checked 
-                                @endif>
+                                @if ($user->gender == '0') checked @endif>
                             <label class="form-check-label" for="Laki-Laki">Laki-Laki</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="gender" id="Perempuan"
-                                 @if ($user->gender == '1')
-                                checked 
-                                @endif value="1">
+                                @if ($user->gender == '1') checked @endif value="1">
                             <label class="form-check-label" for="Perempuan">Perempuan</label>
                         </div>
 
@@ -86,16 +81,12 @@
                         <label for="isAdmin" class="form-label">Apakah user seorang Admin?</label> <br>
                         <div class="form-check form-check-inline mt-3">
                             <input class="form-check-input" type="radio" name="isAdmin" id="false"
-                                value="0" @if ($user->isAdmin == false)
-                                checked
-                                @endif>
+                                value="0" @if ($user->isAdmin == false) checked @endif>
                             <label class="form-check-label" for="false">Bukan</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="isAdmin" id="true"
-                                value="1" @if ($user->isAdmin == true)
-                                checked
-                                @endif>
+                                value="1" @if ($user->isAdmin == true) checked @endif>
                             <label class="form-check-label" for="true">Ya</label>
                         </div>
                     </div>

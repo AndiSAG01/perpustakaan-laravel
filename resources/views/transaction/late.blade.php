@@ -68,7 +68,7 @@
                             <td>{{ $item->entry }}</td>
                             <td>{{ $item->return }}</td>
                             <td class="d-flex justify-content-center gap-1">
-                                <a href="/transaction/{{ $item->id }}/show" class="btn btn-info">Show</a>
+                                <a href="/transaction/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
                             </td>
                         </tr>
                     @endforeach

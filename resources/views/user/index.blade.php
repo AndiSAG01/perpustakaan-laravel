@@ -57,7 +57,7 @@
                             </td>
 
                             <td class="d-flex gap-1">
-                                <a href="/user/{{ $item->id }}/show" class="btn btn-info">Show</a>
+                                <a href="/user/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
                             </td>
                         </tr>
                     @endforeach

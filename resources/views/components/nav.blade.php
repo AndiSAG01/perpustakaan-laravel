@@ -14,14 +14,6 @@
             <div data-i18n="User">User</div>
         </a>
     </li>
-
-    <!-- Category -->
-    <li class="menu-item ">
-        <a href="/category" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-category"></i>
-            <div data-i18n="category">Kategori Buku</div>
-        </a>
-    </li>
     
     <!-- book -->
     <li class="menu-item ">

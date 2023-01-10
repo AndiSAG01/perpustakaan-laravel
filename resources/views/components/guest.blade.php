@@ -198,7 +198,7 @@
                     <nav class="nav justify-content-center gap-4 m-4">
                         @if (Route::has('login'))
                             @auth
-                                <a id="btn" class="btn btn-outline-dark text-white btn-sm" href="/"><i
+                                <a id="btn" class="btn btn-outline-dark text-white btn-sm" href="/home"><i
                                         class="fa-solid fa-house-chimney"></i> Home</a>
                             @else
                                 <a id="btn" class="btn btn-outline-dark text-white btn-sm"

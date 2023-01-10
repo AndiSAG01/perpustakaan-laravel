@@ -12,9 +12,16 @@ class BookController extends Controller
 {
     public function index()
     {
+        $total = Book::selectRaw('count(*) as jumlah, category_id')
+        ->groupBy('category_id')
+        ->with('category')
+        ->get();
+
         return view('book.index', [
             'books' => Book::all(),
-            'categories' => Category::get()
+            'categories' => Category::get(),
+            'total' => $total
+            
         ]);
     }
 
