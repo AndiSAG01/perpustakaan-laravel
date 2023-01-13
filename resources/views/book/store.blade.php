@@ -16,7 +16,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="col mb-3">
-                        <label for="title" class="form-label">Judul</label>
+                        <label for="title" class="form-label">Judul Buku</label>
                         <input type="text" id="title" class="form-control" value="{{ old('title') }}"
                             name="title" placeholder="Enter Title">
                         @error('title')
@@ -24,7 +24,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3 d-none">
-                        <label for="image" class="form-label">Judul</label>
+                        <label for="image" class="form-label">Cover</label>
                         <input type="file" id="image" class="form-control" value="{{ old('image') }}"
                             name="image">
                         @error('image')
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="col mb-3">
-                        <label for="isbn" class="form-label">ISBN</label>
+                        <label for="isbn" class="form-label">ISBN Buku</label>
                         <input type="number" id="isbn" class="form-control" value="{{ old('isbn') }}"
                             name="isbn" placeholder="xxxxxxxxx">
                         @error('isbn')
@@ -74,7 +74,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="stock" class="form-label">stok</label>
+                        <label for="stock" class="form-label">stok buku</label>
                         <input type="number" id="stock" class="form-control" value="{{ old('stock') }}"
                             name="stock" placeholder="1X">
                         @error('stock')

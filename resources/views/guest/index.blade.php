@@ -13,7 +13,7 @@
                             @endforeach
                           </datalist>
                           @error('name')
-                              <span class="text-warning">{{ $message }}</span>
+                              <small class="text-danger">{{ $message }}</small>
                           @enderror
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <input type="text" name="from" value="{{ old('from') }}" placeholder="Enter Your Origin"
                         class="form-control" id="from">
                         @error('from')
-                            <span class="text-warning">{{ $message }}</span>
+                            <small class="text-danger">{{ $message }}</small>
                         @enderror
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <input type="text" name="description" value="{{ old('description') }}"
                         placeholder="Enter Your Destination" class="form-control" id="description">
                         @error('description')
-                            <span class="text-warning">{{ $message }}</span>
+                            <small class="text-danger">{{ $message }}</small>
                         @enderror
                 </div>
             </div>

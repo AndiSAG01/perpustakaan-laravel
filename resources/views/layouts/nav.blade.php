@@ -9,7 +9,7 @@
 
     <!-- myprofile -->
     <li class="menu-item ">
-        <a href="{{ route('profile', Auth::user()->noId) }}" class="menu-link">
+        <a href="/profile/{id}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user"></i>
             <div data-i18n="myprofile">My Profile</div>
         </a>

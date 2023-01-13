@@ -16,7 +16,7 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="col mb-3">
-                        <label for="noId" class="form-label">noId</label>
+                        <label for="noId" class="form-label">no. identitas</label>
                         <input type="number" id="noId" class="form-control" value="{{ $user->noId }}"
                             name="noId">
                         @error('noId')
@@ -24,7 +24,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="name" class="form-label">name</label>
+                        <label for="name" class="form-label">nama lengkap</label>
                         <input type="text" id="name" class="form-control" value="{{ $user->name }}"
                             name="name">
                         @error('name')
@@ -62,7 +62,7 @@
 
                     </div>
                     <div class="col mb-3">
-                        <label for="address" class="form-label">address</label>
+                        <label for="address" class="form-label">alamat</label>
                         <input type="text" id="address" class="form-control" value="{{ $user->address }}"
                             name="address">
                         @error('address')

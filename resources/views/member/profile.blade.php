@@ -18,21 +18,34 @@
                 </div>
               </div>
             </div>
+            <br>
             <hr class="my-0">
             <div class="card-body">
               <form id="formAccountSettings" method="POST" onsubmit="return false">
                 <div class="row">
                   <div class="mb-3 col-md-6">
                     <label for="noId" class="form-label">No. identitas</label>
-                    <input class="form-control" type="text" id="noId" name="noId" value="{{ $user->noId }}" autofocus="">
+                    <input class="form-control" type="number" id="noId" name="noId" value="{{ Auth::user()->noId }}" autofocus="">
                   </div>
                   <div class="mb-3 col-md-6">
                     <label for="name" class="form-label">nama lengkap</label>
-                    <input class="form-control" type="text" name="name" id="name" value="{{ $user->name }}">
+                    <input class="form-control" type="text" name="name" id="name" value="{{ Auth::user()->name }}">
                   </div>
                   <div class="mb-3 col-md-6">
                     <label for="email" class="form-label">E-mail</label>
-                    <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="{{ $user->email }}">
+                    <input class="form-control" type="text" id="email" name="email" value="{{ Auth::user()->email }}" >
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label for="birthday" class="form-label">Tanggal lahir</label>
+                    <input class="form-control" type="date" id="birthday" name="birthday" value="{{ Auth::user()->birthday }}">
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label for="address" class="form-label">Alamat</label>
+                    <input class="form-control" type="text" id="address" name="address" value="{{ Auth::user()->address }}">
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label for="telp" class="form-label">Telp</label>
+                    <input class="form-control" type="number" id="telp" name="telp" value="{{ Auth::user()->telp }}">
                   </div>
                   
                 </div>

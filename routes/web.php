@@ -90,8 +90,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [MemberController::class, 'index'])->name('dashboard');
-    Route::get('/profile/{user:noId}', [MemberController::class, 'profile'])->name('profile');
+    Route::get('/dashboard', [MemberController::class, 'index']);
+    Route::get('/profile/{id}', [MemberController::class, 'show']);
 
 });
 

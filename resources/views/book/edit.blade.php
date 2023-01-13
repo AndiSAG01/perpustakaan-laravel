@@ -16,7 +16,7 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="col mb-3">
-                        <label for="title" class="form-label">Judul</label>
+                        <label for="title" class="form-label">Judul buku</label>
                         <input type="text" id="title" class="form-control" value="{{ $book->title }}"
                             name="title" placeholder="Enter Title">
                         @error('title')
@@ -33,7 +33,7 @@
                     </div> --}}
 
                     <div class="col mb-3">
-                        <label for="isbn" class="form-label">ISBN</label>
+                        <label for="isbn" class="form-label">ISBN Buku</label>
                         <input type="number" id="isbn" class="form-control" value="{{ $book->isbn }}"
                             name="isbn" placeholder="xxxxxxxxx">
                         @error('isbn')
@@ -60,7 +60,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="publisher" class="form-label">publisher</label>
+                        <label for="publisher" class="form-label">Penerbit</label>
                         <input type="text" id="publisher" class="form-control" value="{{ $book->publisher }}"
                             name="publisher" placeholder="Gramedia">
                         @error('publisher')
@@ -68,7 +68,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="publicationYear" class="form-label">publicationYear</label>
+                        <label for="publicationYear" class="form-label">Tahun Terbit</label>
                         <input type="number" id="publicationYear" value="{{ $book->publicationYear }}"
                             class="form-control" name="publicationYear" placeholder="20XX">
                         @error('publicationYear')
@@ -76,7 +76,7 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="stock" class="form-label">stock</label>
+                        <label for="stock" class="form-label">stok buku</label>
                         <input type="number" id="stock" class="form-control" value="{{ $book->stock }}"
                             name="stock" placeholder="1X">
                         @error('stock')
