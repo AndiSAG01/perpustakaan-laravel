@@ -32,9 +32,9 @@
                         <th>Tanggal Pengembalian</th>
                         <th>status</th>
                         <th>denda</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
-                {{ $transaction }}
                 <tbody class="table-border-bottom-0">
                     @foreach ($transaction as $no => $item)
                         <tr>
@@ -45,11 +45,13 @@
                             <td>{{ $item->return }}</td>
                             <td>
                                 @if ($item->status == false)
-                                    Pending
+                                    Pinjam
                                 @else
-                                    Success
+                                    Selesai
                                 @endif
                             </td>
+                            <td>{{ $item->LateDay ?? '-' }}</td>
+                            <td>{{ $item->description }}</td>
                         </tr>
                     @endforeach
                 </tbody>
