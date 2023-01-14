@@ -17,9 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,500&display=swap"
         rel="stylesheet">
 
-        <!-- datatable -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         @keyframes move {
@@ -159,7 +159,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .table{
+        .table {
             margin-top: 100px;
         }
     </style>
@@ -198,8 +198,11 @@
                     <nav class="nav justify-content-center gap-4 m-4">
                         @if (Route::has('login'))
                             @auth
-                                <a id="btn" class="btn btn-outline-dark text-white btn-sm" href="/home"><i
-                                        class="fa-solid fa-house-chimney"></i> Home</a>
+                            @if (Auth::user()->isAdmin == true)
+                            <a id="btn" class="btn btn-outline-dark text-white btn-sm" href="/home"><i class="fa-solid fa-house-chimney"></i> Home</a>
+                            @else
+                            <a id="btn" class="btn btn-outline-dark text-white btn-sm" href="/dashboard"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>
+                            @endif
                             @else
                                 <a id="btn" class="btn btn-outline-dark text-white btn-sm"
                                     href="{{ route('login') }}"><i class="fa-solid fa-house-user"></i> User</a>
@@ -232,7 +235,7 @@
     <!-- datatable -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     <script>
@@ -241,8 +244,6 @@
             $('#search').select2();
 
         });
-        
-        
     </script>
 </body>
 

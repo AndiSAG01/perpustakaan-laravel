@@ -9,9 +9,17 @@
 
     <!-- myprofile -->
     <li class="menu-item ">
-        <a href="/profile/{id}" class="menu-link">
+        <a href="/profile/{id}/show" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user"></i>
             <div data-i18n="myprofile">My Profile</div>
+        </a>
+    </li>
+
+    <!-- history -->
+    <li class="menu-item ">
+        <a href="/history" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="myprofile">History</div>
         </a>
     </li>
 </ul>

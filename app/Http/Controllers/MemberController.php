@@ -12,7 +12,7 @@ class MemberController extends Controller
     public function index()
     {
         return view('member.index', [
-            'transaction' => Transaction::where('user_id', Auth()->user()->id)->get()
+            'transaction' => Transaction::where('user_id', Auth()->user()->id)->get(),
 
         ]);
     }
@@ -20,23 +20,58 @@ class MemberController extends Controller
     public function show()
     {
         return view('member.profile', [
-            'transaction' => Transaction::where('user_id', Auth()->user()->id)->get()
+            
         ]);
+    }
+
+    public function edit()
+    {
+        return view('member.update', [
+            
+        ]);    
     }
 
     public function update(request $request)
     {
-        Auth::user()->update([
+        $request->validate([
+            'noId' => 'required|integer|min:8|unique:users,noId',
+            'name' => 'required|string|min:3',
+            'email' => 'required|email',
+            'password'=> 'min:5',
+            'isAdmin' => 'required|integer',
+            'birthday' => 'required',
+            'gender'  => 'required|integer',
+            'address' => 'required|min:5',
+            'telp' => 'required|string',
+        ]);
+        $user = Auth::user();
+        $user->update([
             'noId'=> $request->noId,
             'name'=> $request->name,
             'email'=> $request->email,
+            'password'=> $request->password,
             'birthday' => $request->birthday,
             'gender' => $request->gender,
             'address' => $request->address,
             'telp' => $request->telp,
-            'isAdmin' => $request->isAdmin,
+            'isAdmin' => 0,
         ]);
 
-        return redirect('user')->with('success', 'Update Data Berhasil 🤩');
+        return view('member.profile')->with('success', 'Update Data Berhasil 🤩');
+    }
+
+    public function history()
+    {
+        return view('member.history', [
+            'history' => Transaction::where('user_id', Auth()->user()->id)->get(),
+
+        ]);
+    }
+
+    public function print()
+    {
+        return view('guest.result', [
+            'user' => Auth::user()
+        ]); 
     }
 }

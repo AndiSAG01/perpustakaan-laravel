@@ -91,7 +91,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [MemberController::class, 'index']);
-    Route::get('/profile/{id}', [MemberController::class, 'show']);
+    Route::get('/history', [MemberController::class, 'history']);
+    Route::get('/profile/{id}/show', [MemberController::class, 'show']);
+    Route::get('/profile/{id}/edit', [MemberController::class, 'edit']);
+    Route::put('/profile/{id}', [MemberController::class, 'update']);
+    Route::get('/print', [MemberController::class, 'print']);
 
 });
 
