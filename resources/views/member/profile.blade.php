@@ -4,7 +4,7 @@
           <div class="card mb-4">
             <h5 class="card-header">Profile Details</h5>
             <!-- Account -->
-            <div class="card-body">
+            {{-- <div class="card-body">
               <div class="d-flex align-items-start align-items-sm-center gap-4">
                 <img src="../assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
                 <div class="button-wrapper">
@@ -18,7 +18,7 @@
               </div>
             </div>
             <br>
-            <hr class="my-0">
+            <hr class="my-0"> --}}
             <div class="card-body">
                 <div class="row">
                   <div class="mb-3 col-md-6">

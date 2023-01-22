@@ -168,8 +168,7 @@ return [
         
         // barcode
         Milon\Barcode\BarcodeServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+       
 
 
 
@@ -239,7 +238,6 @@ return [
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

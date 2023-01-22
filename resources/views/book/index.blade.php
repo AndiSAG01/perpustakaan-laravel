@@ -9,9 +9,9 @@
                             <div class="shadow-sm me-2 text-primary">
                                 <i class='bx bxs-bookmark-minus'></i>
                             </div>
-                            <div class="d-flex w-100 flex-wrap gap-2 overflow">
+                            <div class="d-flex flex-wrap gap-2 overflow-hidden" style="max-width: 80px">
                                 <div class="d-flex flex-column ">
-                                    <span class="fw-bold">{{ $item->category->name }}</span>
+                                    <span class="fw-bold">{{ $item->category->code }}</span>
                                     <small class="mb-0">{{ $item->jumlah }} Buku</small>
                                 </div>
                             </div>

@@ -99,8 +99,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('/guest', [GuestController::class, 'index']);
-Route::post('/guest', [GuestController::class, 'store']);
+Route::get('/presensi', [GuestController::class, 'index']);
+Route::post('/presensi', [GuestController::class, 'store']);
 Route::get('/idcard', [GuestController::class, 'idcard']);
 Route::post('/search', [GuestController::class, 'search']);
 Route::view('/', 'test');

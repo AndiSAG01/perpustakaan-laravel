@@ -25,7 +25,7 @@ data-template="vertical-menu-template-free"
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>Pendaftaran anggota perpustakaan</title>
 
   <meta name="description" content="" />
 
@@ -127,12 +127,12 @@ data-template="vertical-menu-template-free"
                     </g>
                   </svg>
                 </span>
-                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                <span class="app-brand-text demo text-body fw-bolder">Pendaftaran anggota</span>
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Adventure starts here 🚀</h4>
-            <p class="mb-4">Make your app management easy and fun!</p>
+            <h4 class="mb-2">Petualangan dimulai di sini 🚀</h4>
+            <p class="mb-4">Jadikan manajemen aplikasi Anda mudah dan menyenangkan!</p>
 
             <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
               @csrf
@@ -235,9 +235,9 @@ data-template="vertical-menu-template-free"
 
           </form>
           <p class="text-center">
-              <span>Already have an account?</span>
+              <span>Sudah punya akun?</span>
               <a href="{{ route('login') }}">
-                <span>Sign in instead</span>
+                <span>Yuk masuk!</span>
               </a>
             </p>
             <!-- Register Card -->

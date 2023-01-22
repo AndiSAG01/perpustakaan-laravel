@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Login SI Perpustakaan</title>
 
     <meta name="description" content="" />
 
@@ -119,12 +119,12 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Login User</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-              <p class="mb-4">Please sign-in to your account and start the adventure</p>
+              <h4 class="mb-2">Welcome Again! 👋</h4>
+              <p class="mb-4">Silakan masuk ke akun Anda!</p>
 
               <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                 @csrf
@@ -176,9 +176,9 @@
               </form>
 
               <p class="text-center">
-                <span>New on our platform?</span>
+                <span>Kamu pengguna baru?</span>
                 <a href="{{ route('register')}}">
-                  <span>Create an account</span>
+                  <span>Buat akun sekarang</span>
                 </a>
               </p>
             </div>
