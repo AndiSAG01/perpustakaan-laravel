@@ -104,3 +104,5 @@ Route::post('/presensi', [GuestController::class, 'store']);
 Route::get('/idcard', [GuestController::class, 'idcard']);
 Route::post('/search', [GuestController::class, 'search']);
 Route::view('/', 'test');
+Route::view('/find', 'findBook');
+Route::post('/findBook', [GuestController::class, 'findBook']);

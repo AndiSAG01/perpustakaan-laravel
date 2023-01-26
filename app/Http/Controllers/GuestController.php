@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GuestRequest;
+use App\Models\Book;
 use App\Models\Guest;
 use App\Models\User;
 use Carbon\Carbon;
@@ -42,6 +43,14 @@ class GuestController extends Controller
     {
         return view('guest.result', [
             'user' => User::where('name', request('search'))->orWhere('noId', request('search'))->first()
+        ]); 
+    }
+
+    public function findBook(Request $request)
+    {
+
+        return view('guest.find', [
+            'book' => Book::where('title','like',"%".request('find')."%")->get()
         ]); 
     }
 }

@@ -119,7 +119,7 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Login User</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Login</span>
                 </a>
               </div>
               <!-- /Logo -->

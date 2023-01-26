@@ -63,10 +63,9 @@
                                 @else
                                     <li class="nav-item"><a class="nav-link" aria-current="page"
                                             href="/dashboard">Dashboard</a>
-                                        </li>
+                                    </li>
                                 @endif
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/presensi">Presensi</a>
-                                </li>
                                 </li>
                             </ul>
                         @else
@@ -74,6 +73,8 @@
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/presensi">Presensi</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" aria-current="page" href="/find">Cari Buku</a>
                                 </li>
                             </ul>
                             <div class="d-flex ms-lg-4 gap-1">
@@ -89,7 +90,7 @@
             </div>
             </div>
         </nav>
-        {{ $slot}}
+        {{ $slot }}
         <section class="pb-2 pb-lg-5">
             <div class="container">
                 <div class="row border-top border-top-secondary pt-7">
@@ -127,7 +128,7 @@
             </div><!-- end of .container-->
 
         </section>
-       
+
         <section class="text-center py-0">
 
             <div class="container">
