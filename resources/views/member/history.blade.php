@@ -1,9 +1,16 @@
 <x-layout>
     <div class="card-body">
-        <a href="" class="btn btn-primary">Tambah Peminjaman</a>
+        @if ($message = Session::get('success'))
+        <div class="alert alert-primary alert-block">
+            <strong>{{ $message }}</strong>
+        </div>
+    @elseif ($errors->all())
+        <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
+    @endif
+        @include('member.borrow')
         <h5 class="card-header fw-bold text-center">Transaksi Peminjaman Anggota</h5>
         <div class="table-responsive text-nowrap">
-            <table id="myTable" class="table text-center">
+            <table id="myTable" class="table">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -22,13 +29,15 @@
                             <td>{{ ++$no }}</td>
                             <td>{{ $item->user->name }}</td>
                             <td>{{ $item->book->title }}</td>
-                            <td>{{ $item->entry }}</td>
-                            <td>{{ $item->return }}</td>
+                            <td>{{ $item->entry ?? '-' }}</td>
+                            <td>{{ $item->return ?? '-' }}</td>
                             <td>
-                                @if ($item->status == false)
+                                @if ($item->status == 0)
                                     Pinjam
+                                @elseif ($item->status == 1)
+                                Selesai
                                 @else
-                                    Selesai
+                                Menunggu Konfirmasi
                                 @endif
                             </td>
                             <td>{{ $item->LateDay ?? '-' }}</td>
@@ -39,4 +48,11 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+        setTimeout(function() {
+
+            // Closing the alert
+            $('.alert').alert('close');
+        }, 3000);
+    </script>
 </x-layout>

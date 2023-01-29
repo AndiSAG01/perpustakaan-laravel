@@ -18,9 +18,9 @@ class BookFactory extends Factory
         return [
             'category_id' => rand(1, 5),
             'barcode' => Str::random(10),
-            'image' => $this->faker->imageUrl(),
+            'image' => $this->faker->imageUrl(640, 480, 'cats'),
             'isbn' => $this->faker->ean13(),
-            'title' => "Buku " . $this->faker->sentence(),
+            'title' => "Buku " . $this->faker->words(3, true) ,
             'author' => $this->faker->name(),
             'publisher'=> $this->faker->company(),
             'publicationYear' => $this->faker->year(),

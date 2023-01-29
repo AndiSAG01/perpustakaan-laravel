@@ -22,17 +22,6 @@
         <button type="submit" class="btn btn-outline-dark">Submit</button>
     </div>
 </form>
-    {{-- <div class="container pt-5">
-        @csrf
-        <div class="mb-3">
-          <label for="find" class="form-label">
-            <h1>Pencarian data buku</h1></label>
-          <input type="text"
-            class="form-control" name="find" id="find" placeholder="Masukkan judul buku">
-          <button type="submit" class="btn btn-primary btn-md mt-4">Submit</button>
-        </div>
-    </form>
-    </div> --}}
   </div>
 
 </x-guest>

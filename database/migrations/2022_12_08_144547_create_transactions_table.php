@@ -19,8 +19,9 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('book_id')->constrained('books')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('late_id');
-            $table->string('entry');
-            $table->string('return');
+            $table->string('submission')->nullable();
+            $table->string('entry')->nullable();
+            $table->string('return')->nullable();
             $table->string('lateDay')->nullable();
             $table->string('description');
             $table->boolean('status');

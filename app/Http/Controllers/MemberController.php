@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
+use App\Models\Book;
+use App\Models\Late;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MemberController extends Controller
 {
@@ -64,6 +69,9 @@ class MemberController extends Controller
     {
         return view('member.history', [
             'history' => Transaction::where('user_id', Auth()->user()->id)->get(),
+            'day' => Carbon::now()->format('Y-m-d'),
+            'books'=> Book::get(),
+            'late'=> Late::where('id', 1)->first(),
 
         ]);
     }
@@ -73,5 +81,25 @@ class MemberController extends Controller
         return view('guest.result', [
             'user' => Auth::user()
         ]); 
+    }
+    public function borrow(Request $request)
+    {
+        $request->validate([
+            'transactionCode' => '',
+            'book_id' => 'required|integer',
+            'submission' => 'required',
+            'late_id' => 'required',
+        ]);
+        Transaction::create([
+            'transactionCode' => 'TRX'.Str::random(5),
+            'book_id'=> $request->book_id,
+            'user_id'=> Auth::user()->id,
+            'late_id'=> $request->late_id,
+            'submission'=> $request->submission,
+            'description' => 'Menunggu Konfirmasi',
+            'status'=> 2,
+        ]);
+
+        return back()->with('success', 'Pengajuan Sukses, Silahkan tunggu konfirmasi dari administrator 😀');
     }
 }

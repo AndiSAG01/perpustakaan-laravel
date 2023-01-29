@@ -18,7 +18,7 @@
     <!-- history -->
     <li class="menu-item ">
         <a href="/history" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-user"></i>
+            <i class="menu-icon tf-icons bx bx-transfer"></i>
             <div data-i18n="myprofile">History</div>
         </a>
     </li>

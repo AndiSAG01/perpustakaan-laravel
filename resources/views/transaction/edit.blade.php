@@ -82,7 +82,7 @@
                         <input type="text" id="lateDay" class="form-control"
                             @if (Carbon\carbon::now() > $transaction->return) value="{{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) . ' Hari' }}"
                     @else
-                        value="0 Hari" @endif
+                        value="Total Denda Rp. 0" @endif
                             name="lateDay">
                         @error('lateDay')
                             <span class="text-danger">{{ $message }}</span>
@@ -93,7 +93,7 @@
                         <input type="text" id="description" class="form-control"
                             @if (Carbon\carbon::now() > $transaction->return) value="Total Denda Rp. {{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) * $transaction->late_id }}"
                     @else
-                        value="0 Hari" @endif
+                        value="Total Denda Rp. 0" @endif
                             name="description">
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>

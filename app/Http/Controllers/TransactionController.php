@@ -23,6 +23,7 @@ class TransactionController extends Controller
         return view('transaction.index', [
             'entry' => Transaction::where('status', 0)->get(),
             'return' => Transaction::where('status', 1)->get(),
+            'pending' => Transaction::where('status', 2)->get(),
             'users' => User::all(),
             'books' => Book::all(),
             'day' => Carbon::now()->format('Y-m-d'),
@@ -114,5 +115,25 @@ class TransactionController extends Controller
         transaction::where('id', $id)->delete();
 
         return redirect('transaction')->with('success', 'Hapus Data Berhasil 😎');
+    }
+
+    public function ended(Request $request, $id)
+    {
+        $return = $request->return;
+        $formDate = Carbon::createFromDate($return);
+        $now = Carbon::now();
+        $lateday = $formDate->diffInDays($now);
+
+        Transaction::where('id', $id)->update([
+            'book_id'=> $request->book_id,
+            'user_id'=> $request->user_id,
+            'entry'=> $request->entry,
+            'return'=> $request->return,
+            'lateDay' => $lateday,
+            'description' => $request->description,
+            'status'=> $request->status,
+        ]);
+        return redirect('transaction')->with('success', 'Update Data Berhasil 🤩');
+
     }
 }
