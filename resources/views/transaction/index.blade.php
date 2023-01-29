@@ -8,7 +8,7 @@
         @elseif ($errors->all())
             <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
         @endif
-        <div class="col-xxl">
+        <div class="col-xxl d-none d-none">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">Form Denda Keterlambantan</h5>
@@ -46,7 +46,7 @@
         {{-- form --}}
         @include('transaction.store')
         {{-- endform --}}
-        <h5 class="card-header text-center">Table Transaksi Buku</h5>
+        <h5 class="card-header text-center">Data Transaksi </h5>
         <div class="nav-align-top mb-4 ">
 
             <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
@@ -95,10 +95,16 @@
                                                 <span class="badge bg-label-danger me-1">Pinjam</span>
                                             @endif
                                         </td>
-                                        <td>{{ $item->lateDay }}</td>
+                                        <td>
+                                            @if ($now > $item->return)
+                                            {{ (carbon\carbon::parse($item->return)->diffInDays($now)) . " Hari" }}
+                                            @else
+                                                0 Hari
+                                            @endif
+                                            </td>
                                         <td class="d-flex gap-1">
                                             <a href="/transaction/{{ $item->id }}/show"
-                                                class="btn btn-info btn-sm">Show</a>
+                                                class="btn btn-info btn-sm">Lihat</a>
                                         </td>
                                     </tr>
                                 @endforeach

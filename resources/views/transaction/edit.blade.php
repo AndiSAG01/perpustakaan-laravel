@@ -8,7 +8,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Edit Transaksi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/transaction/{id}" method="POST" enctype="multipart/form-data">
@@ -18,9 +18,10 @@
                     <div class="col mb-3">
                         <label for="book_id" class="form-label">Judul Buku</label>
                         <select class="form-select form-select-lg" name="book_id" id="book_id">
-                            <option value="{{ $transaction->book->id }}" selected>{{ $transaction->book->title }}</option>
+                            <option value="{{ $transaction->book->id }}" selected>{{ $transaction->book->title }}
+                            </option>
                             @foreach ($books as $item)
-                            <option value="{{ $item->id}}">{{ $item->title}}</option>
+                                <option value="{{ $item->id }}">{{ $item->title }}</option>
                             @endforeach
                         </select>
                         @error('book_id')
@@ -30,9 +31,10 @@
                     <div class="col mb-3">
                         <label for="user_id" class="form-label">Nama Peminjam</label>
                         <select class="form-select form-select-lg" name="user_id" id="user_id">
-                            <option value="{{ $transaction->user->id }}" selected>{{ $transaction->user->name }}</option>
+                            <option value="{{ $transaction->user->id }}" selected>{{ $transaction->user->name }}
+                            </option>
                             @foreach ($users as $item)
-                            <option value="{{ $item->id}}">{{ $item->name}}</option>
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                         @error('user_id')
@@ -58,28 +60,40 @@
                     <div class="col mb-3">
                         <label for="status">Status Peminjaman</label>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="status" id="1" value="1" @if ($transaction->status == true)
-                              checked
-                          @endif>
-                          <label class="form-check-label" for="1">
-                            Selesai
-                          </label>
+                            <input class="form-check-input" type="radio" name="status" id="1" value="1"
+                                @if ($transaction->status == true) checked @endif>
+                            <label class="form-check-label" for="1">
+                                Selesai
+                            </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="status" id="0" value="0" @if ($transaction->status == false)
-                              checked
-                          @endif>
-                          <label class="form-check-label" for="0">
-                            Dipinjam
-                          </label>
+                            <input class="form-check-input" type="radio" name="status" id="0" value="0"
+                                @if ($transaction->status == false) checked @endif>
+                            <label class="form-check-label" for="0">
+                                Dipinjam
+                            </label>
                         </div>
                         @error('return')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col mb-3">
+                        <label for="lateDay" class="form-label">Telat</label>
+                        <input type="text" id="lateDay" class="form-control"
+                            @if (Carbon\carbon::now() > $transaction->return) value="{{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) . ' Hari' }}"
+                    @else
+                        value="0 Hari" @endif
+                            name="lateDay">
+                        @error('lateDay')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col mb-3">
                         <label for="description" class="form-label">keterangan</label>
-                        <input type="text" id="description" class="form-control" value="{{ $transaction->description }}"
+                        <input type="text" id="description" class="form-control"
+                            @if (Carbon\carbon::now() > $transaction->return) value="Total Denda Rp. {{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) * $transaction->late_id }}"
+                    @else
+                        value="0 Hari" @endif
                             name="description">
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>

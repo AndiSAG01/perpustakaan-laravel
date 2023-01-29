@@ -3,7 +3,7 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Form Pembayaran Denda Buku</h5> <small class="text-muted float-end">Merged input
+                    <h5 class="mb-0">Edit Data Bayar Denda</h5> <small class="text-muted float-end">Merged input
                         group</small>
                 </div>
                 <div class="card-body">
@@ -58,14 +58,14 @@
                         
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <h5 class="card-header">Table Basic</h5>
+        <h5 class="card-header">Data Denda</h5>
         <div class="table-responsive text-nowrap">
             <table class="table text-center">
                 <thead>
@@ -89,7 +89,7 @@
                                 <form action="/income/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
                                 </form>
                             </td>
                         </tr>

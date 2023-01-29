@@ -73,7 +73,7 @@
     <!-- letter -->
     <li class="menu-item ">
         <a href="/letter" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-money"></i>
+            <i class="menu-icon tf-icons bx bx-envelope"></i>
             <div data-i18n="letter">Surat Keterangan</div>
         </a>
     </li>

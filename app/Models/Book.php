@@ -21,6 +21,16 @@ class Book extends Model
         'publicationYear',
         'stock',
     ];
+    public function borrow()
+    {
+        $this->stock--;
+        $this->save();
+    }
+    public function lend()
+    {
+        $this->stock++;
+        $this->save();
+    }
 
     public function category()
     {

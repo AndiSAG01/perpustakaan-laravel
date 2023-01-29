@@ -1,6 +1,7 @@
 <x-layout>
     <div class="card-body">
-        <h5 class="card-header fw-bold text-center">Table Transaksi Buku</h5>
+        <a href="" class="btn btn-primary">Tambah Peminjaman</a>
+        <h5 class="card-header fw-bold text-center">Transaksi Peminjaman Anggota</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table text-center">
                 <thead>

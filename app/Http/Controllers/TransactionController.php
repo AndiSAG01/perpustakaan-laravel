@@ -27,6 +27,7 @@ class TransactionController extends Controller
             'books' => Book::all(),
             'day' => Carbon::now()->format('Y-m-d'),
             'late' => Late::first(),
+            'now' => Carbon::now()->format('Y-m-d')
         ]);
 
     }
@@ -38,17 +39,33 @@ class TransactionController extends Controller
         $now = Carbon::now();
         $lateday = $formDate->diffInDays($now);
 
-        Transaction::create([
-            'transactionCode' => 'TRX'.Str::random(5),
-            'book_id'=> $request->book_id,
-            'user_id'=> $request->user_id,
-            'late_id'=> $request->late_id,
-            'entry'=> $request->entry,
-            'return'=> $request->return,
-            'lateDay' => $lateday . ' Hari',
-            'description' => 'Total Denda Rp. ' . $request->late_id * $lateday,
-            'status'=> false,
-        ]);
+        if ($request->return > $now) {
+            Transaction::create([
+                'transactionCode' => 'TRX'.Str::random(5),
+                'book_id'=> $request->book_id,
+                'user_id'=> $request->user_id,
+                'late_id'=> $request->late_id,
+                'entry'=> $request->entry,
+                'return'=> $request->return,
+                'lateDay' => '',
+                'description' => 'Masih Dipinjam',
+                'status'=> false,
+                'book' => Book::find($request->book_id)->borrow(),
+            ]);
+        } else {
+            Transaction::create([
+                'transactionCode' => 'TRX'.Str::random(5),
+                'book_id'=> $request->book_id,
+                'user_id'=> $request->user_id,
+                'late_id'=> $request->late_id,
+                'entry'=> $request->entry,
+                'return'=> $request->return,
+                'lateDay' => $lateday,
+                'description' => 'Total Denda Rp. ' . $lateday * $request->late_id,
+                'status'=> false,
+                'book' => Book::find($request->book_id)->borrow(),
+            ]);
+        }
 
         return back()->with('success', 'Tambah Data Sukses 😀');
     }
@@ -84,7 +101,7 @@ class TransactionController extends Controller
             'user_id'=> $request->user_id,
             'entry'=> $request->entry,
             'return'=> $request->return,
-            'lateDay' => $lateday . ' Hari',
+            'lateDay' => $lateday,
             'description' => $request->description,
             'status'=> $request->status,
         ]);

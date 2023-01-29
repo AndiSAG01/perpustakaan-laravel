@@ -20,6 +20,14 @@
         title {
             text-transform: uppercase;
         }
+        @media print {
+            
+            @page {
+            size: A4;
+            }
+            
+    
+            }
     }
 </style>
 

@@ -3,7 +3,7 @@
       <div class="col-xxl">
         <div class="card mb-4">
           <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Form Kategori Buku</h5> <small class="text-muted float-end">Merged input group</small>
+            <h5 class="mb-0">Ubah Kategori Buku</h5> <small class="text-muted float-end">Merged input group</small>
           </div>
           <div class="card-body">
             <form action="/category/{{ $category->id }}" method="POST">
@@ -29,16 +29,16 @@
               </div>
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">Send</button>
+                  <button type="submit" class="btn btn-primary">Ubah</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-        <h5 class="card-header">Table Basic</h5>
+        <h5 class="card-header text-center">Data Kategori</h5>
         <div class="table-responsive text-nowrap">
-          <table class="table text-center">
+          <table class="table" id="myTable">
               <thead>
                   <tr>
                       <th>No.</th>
@@ -53,11 +53,11 @@
                           <td>{{ $no++ }}</td>
                           <td>{{ $item->code }}</td>
                           <td>{{ $item->name }}</td>
-                          <td class="d-flex justify-content-center gap-1"><a href="/category/{{ $item->id }}/edit" class="btn btn-warning">Edit</a>
+                          <td class="d-flex gap-1"><a href="/category/{{ $item->id }}/edit" class="btn btn-warning btn-sm"><i class="bx bx-edit-alt bx-xs"></i> Edit</a>
                           <form action="/category/{{ $item->id}}" method="POST">
                           @csrf
                           @method('DELETE')
-                          <button class="btn btn-danger" type="submit">Delete</button>
+                          <button class="btn btn-danger btn-sm" type="submit"><i class="bx bx-trash-alt bx-xs"></i> Delete</button>
                           </form>
                           </td>
                       </tr>

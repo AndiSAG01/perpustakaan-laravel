@@ -75,7 +75,14 @@
                     <div class="col-sm-10">
                         <div class="input-group input-group-merge">
                             <input type="text" name="lateDay" class="form-control"
-                                id="basic-icon-default-fullname" value="{{ $transaction->lateDay }}" readonly>
+                                id="basic-icon-default-fullname" 
+                                @if ((Carbon\carbon::now()) > $transaction->return)
+                                value="{{ (carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now())) . " Hari" }}"
+                                @else
+                                    value="0 Hari"
+                                @endif
+                                
+                                readonly>
                         </div>
                     </div>
                 </div>

@@ -83,4 +83,7 @@ class BookController extends Controller
 
         return redirect('book')->with('success', 'Hapus Data Berhasil 😎');
     }
+    public function lend(){
+        
+    }
 }

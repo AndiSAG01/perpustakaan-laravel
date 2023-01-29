@@ -16,11 +16,11 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => rand(1, 8),
+            'category_id' => rand(1, 5),
             'barcode' => Str::random(10),
             'image' => $this->faker->imageUrl(),
             'isbn' => $this->faker->ean13(),
-            'title' => $this->faker->sentence(),
+            'title' => "Buku " . $this->faker->sentence(),
             'author' => $this->faker->name(),
             'publisher'=> $this->faker->company(),
             'publicationYear' => $this->faker->year(),

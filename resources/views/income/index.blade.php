@@ -10,7 +10,7 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Form Pembayaran Denda Buku</h5> <small class="text-muted float-end">Merged input
+                    <h5 class="mb-0">Tambah Data Bayar Denda</h5> <small class="text-muted float-end">Merged input
                         group</small>
                 </div>
                 <div class="card-body">
@@ -25,6 +25,7 @@
                                             class="bx bx-food-menu"></i></span>
                                     <select class="form-select" name="transaction_id">
                                         <option selected>Select one</option>
+                                        
                                         @foreach ($transactions as $item)
                                             <option value="{{ $item->user->id }}">{{ $item->user->name }} (
                                                 {{ $item->user->noId }} )</option>
@@ -67,14 +68,14 @@
 
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <h5 class="card-header fw-bold text-center">Table Pembayaran Denda Buku</h5>
+        <h5 class="card-header fw-bold text-center">Data Denda</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table text-center">
                 <thead>
@@ -98,7 +99,7 @@
                                 <form action="/income/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
                                 </form>
                             </td>
                         </tr>

@@ -20,7 +20,7 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-primary btn-sm mt-3" href="/category">Selengkapnya...</a>
+        <a class="btn btn-primary mt-3" href="/category">Selengkapnya...</a>
     </div>
     <div class="card-body">
         @if ($message = Session::get('success'))
@@ -33,7 +33,7 @@
         {{-- form --}}
         @include('book.store')
         {{-- endform --}}
-        <h5 class="card-header fw-bold text-center">Table Buku</h5>
+        <h5 class="card-header fw-bold text-center">Data Buku</h5>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>
@@ -51,7 +51,7 @@
                             <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->title }}</td>
                             <td class="d-flex gap-1">
-                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
+                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
                             </td>
                         </tr>
                     @endforeach

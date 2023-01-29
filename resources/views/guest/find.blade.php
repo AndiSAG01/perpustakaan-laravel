@@ -1,5 +1,9 @@
 <x-guest>
     <div class="container p-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-md-start text-center py-6">
+                <h1 class="mb-4 fs-9 fw-bold">Pencarian data buku</h1>
+            </div>
         @if ($book->isEmpty())
             <h1 class="text-center">Buku tidak ditemukan </h1>
         @else

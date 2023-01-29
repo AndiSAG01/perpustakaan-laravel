@@ -21,7 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('late_id');
             $table->string('entry');
             $table->string('return');
-            $table->string('lateDay');
+            $table->string('lateDay')->nullable();
             $table->string('description');
             $table->boolean('status');
             $table->timestamps();

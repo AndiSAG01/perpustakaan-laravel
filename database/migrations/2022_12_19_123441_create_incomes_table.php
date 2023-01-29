@@ -24,7 +24,7 @@ class CreateIncomesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *php
      * @return void
      */
     public function down()
