@@ -117,23 +117,60 @@ class TransactionController extends Controller
         return redirect('transaction')->with('success', 'Hapus Data Berhasil 😎');
     }
 
-    public function ended(Request $request, $id)
+    public function ended($id)
     {
+        Transaction::where('id', $id)->update([
+            'status'=> true,
+        ]);
+        return redirect('transaction')->with('success', 'Buku Berhasil Dikembalikan 🤩');
+    }
+    public function confirmation($id)
+    {
+        return view('transaction.confirmation', [
+            'pending' => Transaction::where('id', $id)->first(),
+            'day' => carbon::now()->format('Y-m-d')
+        ]);
+        
+    }
+    public function agree(Request $request, $id)
+    {
+        $request->validate([
+                'late_id'=> 'required|integer',
+                'entry'=> 'required|date',
+                'return'=> 'required|date',
+                'status'=> 'required',
+        ]);
+
         $return = $request->return;
         $formDate = Carbon::createFromDate($return);
         $now = Carbon::now();
         $lateday = $formDate->diffInDays($now);
+        $late_id = late::where('id', 1)->first('body');
+        $book_id = transaction::where('id', $id)->first()->book->id;
 
-        Transaction::where('id', $id)->update([
-            'book_id'=> $request->book_id,
-            'user_id'=> $request->user_id,
-            'entry'=> $request->entry,
-            'return'=> $request->return,
-            'lateDay' => $lateday,
-            'description' => $request->description,
-            'status'=> $request->status,
-        ]);
-        return redirect('transaction')->with('success', 'Update Data Berhasil 🤩');
-
+        if ($request->return > $now) {
+            Transaction::where('id', $id)->update([
+                'book_id'=> $book_id,
+                'late_id'=> $request->late_id,
+                'entry'=> $request->entry,
+                'return'=> $request->return,
+                'lateDay' => '',
+                'description' => 'Masih Dipinjam',
+                'status'=> false,
+            ]);
+            Book::find($book_id)->borrow();
+        } else {
+            Transaction::where('id', $id)->update([
+                'book_id'=> $book_id,
+                'late_id'=> $request->late_id,
+                'entry'=> $request->entry,
+                'return'=> $request->return,
+                'lateDay' => $lateday,
+                'description' => 'Total Denda Rp. ' . $lateday * $late_id,
+                'status'=> false,
+            ]);
+            Book::find($book_id)->borrow();
+        }
+        return redirect('transaction')->with('success', 'Tambah Data Berhasil 🤩');
     }
 }

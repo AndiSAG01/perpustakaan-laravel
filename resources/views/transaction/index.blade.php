@@ -52,6 +52,11 @@
             <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                        data-bs-target="#navs-pills-top-Pending" aria-controls="navs-pills-top-Pending"
+                        aria-selected="true">Pending</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                         data-bs-target="#navs-pills-top-Peminjaman" aria-controls="navs-pills-top-Peminjaman"
                         aria-selected="true">Peminjaman</button>
                 </li>
@@ -61,9 +66,9 @@
                         aria-selected="false" tabindex="-1">Pengembalian</button>
                 </li>
             </ul>
-            
+
             <div class="tab-content mt-2">
-                <div class="tab-pane fade show active" id="navs-pills-top-Peminjaman" role="tabpanel">
+                <div class="tab-pane fade show active" id="navs-pills-top-Pending" role="tabpanel">
                     <div class="table-responsive text-nowrap">
                         <table id="myTable" class="table">
                             <thead>
@@ -72,6 +77,62 @@
                                     <th>no. transaksi</th>
                                     <th>nama Peminjam</th>
                                     <th>Buku dipinjam</th>
+                                    <th>Tanggal Pengajuan</th>
+                                    <th>Tanggal pinjam</th>
+                                    <th>tanggal kembali</th>
+                                    <th>Status</th>
+                                    <th>Telat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach ($pending as $no => $item)
+                                    <tr>
+                                        <td>{{ ++$no }}</td>
+                                        <td>{{ $item->transactionCode }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->book->title }}</td>
+                                        <td>{{ $item->submission ?? '-' }}</td>
+                                        <td>{{ $item->entry ?? '-' }}</td>
+                                        <td>{{ $item->return ?? '-' }}</td>
+                                        <td>
+                                            @if ($item->status == 2)
+                                                <span class="badge bg-label-warning me-1">tertunda</span>
+                                            @elseif ($item->status == 0)
+                                                <span class="badge bg-label-danger me-1">Pinjam</span>
+                                            @else
+                                                <span class="badge bg-label-primary me-1">Selesai</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($now > $item->return)
+                                                {{ carbon\carbon::parse($item->return)->diffInDays($now) . ' Hari' }}
+                                            @else
+                                                0 Hari
+                                            @endif
+                                        </td>
+                                        <td class="d-flex gap-1">
+                                            <a href="/transaction/{{ $item->id }}/confirmation"
+                                                class="btn btn-warning btn-sm">Konfirmasi</a>
+                                            <a href="/transaction/{{ $item->id }}/show"
+                                                class="btn btn-info btn-sm">Lihat</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navs-pills-top-Peminjaman" role="tabpanel">
+                    <div class="table-responsive text-nowrap">
+                        <table id="myTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>no. transaksi</th>
+                                    <th>nama Peminjam</th>
+                                    <th>Buku dipinjam</th>
+                                    <th>Tanggal Pengajuan</th>
                                     <th>Tanggal pinjam</th>
                                     <th>tanggal kembali</th>
                                     <th>Status</th>
@@ -86,23 +147,30 @@
                                         <td>{{ $item->transactionCode }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->book->title }}</td>
-                                        <td>{{ $item->entry }}</td>
-                                        <td>{{ $item->return }}</td>
+                                        <td>{{ $item->submission ?? '-' }}</td>
+                                        <td>{{ $item->entry ?? '-' }}</td>
+                                        <td>{{ $item->return ?? '-' }}</td>
                                         <td>
-                                            @if ($item->status == true)
-                                                <span class="badge bg-label-primary me-1">Selesai</span>
-                                            @else
+                                            @if ($item->status == 2)
+                                                <span class="badge bg-label-warning me-1">tertunda</span>
+                                            @elseif ($item->status == 0)
                                                 <span class="badge bg-label-danger me-1">Pinjam</span>
+                                            @else
+                                                <span class="badge bg-label-primary me-1">Selesai</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if ($now > $item->return)
-                                            {{ (carbon\carbon::parse($item->return)->diffInDays($now)) . " Hari" }}
+                                                {{ carbon\carbon::parse($item->return)->diffInDays($now) . ' Hari' }}
                                             @else
                                                 0 Hari
                                             @endif
-                                            </td>
+                                        </td>
                                         <td class="d-flex gap-1">
+                                            <form action="/ended/{{ $item->id }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm">Selesai</button>
+                                            </form>
                                             <a href="/transaction/{{ $item->id }}/show"
                                                 class="btn btn-info btn-sm">Lihat</a>
                                         </td>
@@ -121,6 +189,7 @@
                                     <th>no. transaksi</th>
                                     <th>nama Peminjam</th>
                                     <th>Buku dipinjam</th>
+                                    <th>Tanggal Pengajuan</th>
                                     <th>Tanggal pinjam</th>
                                     <th>tanggal kembali</th>
                                     <th>Status</th>
@@ -135,19 +204,28 @@
                                         <td>{{ $item->transactionCode }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->book->title }}</td>
-                                        <td>{{ $item->entry }}</td>
-                                        <td>{{ $item->return }}</td>
+                                        <td>{{ $item->submission ?? '-' }}</td>
+                                        <td>{{ $item->entry ?? '-' }}</td>
+                                        <td>{{ $item->return ?? '-' }}</td>
                                         <td>
-                                            @if ($item->status == true)
-                                                <span class="badge bg-label-primary me-1">Selesai</span>
-                                            @else
+                                            @if ($item->status == 2)
+                                                <span class="badge bg-label-warning me-1">tertunda</span>
+                                            @elseif ($item->status == 0)
                                                 <span class="badge bg-label-danger me-1">Pinjam</span>
+                                            @else
+                                                <span class="badge bg-label-primary me-1">Selesai</span>
                                             @endif
                                         </td>
-                                        <td>{{ $item->lateDay }}</td>
+                                        <td>
+                                            @if ($now > $item->return)
+                                                {{ carbon\carbon::parse($item->return)->diffInDays($now) . ' Hari' }}
+                                            @else
+                                                0 Hari
+                                            @endif
+                                        </td>
                                         <td class="d-flex gap-1">
                                             <a href="/transaction/{{ $item->id }}/show"
-                                                class="btn btn-info btn-sm">Show</a>
+                                                class="btn btn-info btn-sm">Lihat</a>
                                         </td>
                                     </tr>
                                 @endforeach

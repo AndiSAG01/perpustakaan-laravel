@@ -16,6 +16,7 @@
                         <th>No.</th>
                         <th>Kode transaksi</th>
                         <th>judul buku</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>status</th>
@@ -29,6 +30,7 @@
                             <td>{{ ++$no }}</td>
                             <td>{{ $item->user->name }}</td>
                             <td>{{ $item->book->title }}</td>
+                            <td>{{ $item->submission ?? '-' }}</td>
                             <td>{{ $item->entry ?? '-' }}</td>
                             <td>{{ $item->return ?? '-' }}</td>
                             <td>

@@ -38,12 +38,12 @@
                         <div class="col mb-3">
                             <label for="submission" class="form-label">tanggal Pengajuan</label>
                             <input type="date" class="form-control" name="submission" id="submission"
-                                value="{{ $day }}">
+                                value="{{ $day }}" readonly>
                             @error('submission')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col mb-3">
+                        <div class="col mb-3 d-none">
                             <label for="late_id" class="form-label">denda/perhari</label>
                             <input type="text" class="form-control" name="late_id" id="late_id"
                                 value="{{ $late->body ?? '' }}" placeholder="Denda Belum diatur" required readonly>

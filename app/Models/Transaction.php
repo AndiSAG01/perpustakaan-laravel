@@ -13,6 +13,7 @@ class Transaction extends Model
         'transactionCode',
         'book_id',
         'user_id',
+        'submission',
         'entry',
         'return',
         'late_id',

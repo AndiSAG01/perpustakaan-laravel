@@ -1,6 +1,6 @@
 <x-app>
 <div class="col-xxl">
-    <div class="card">
+    <div class="card-body">
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
             <strong>{{ $message }}</strong>
@@ -124,5 +124,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    setTimeout(function() {
+
+        // Closing the alert
+        $('.alert').alert('close');
+    }, 3000);
+</script>
 
 </x-app>

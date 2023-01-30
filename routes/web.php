@@ -67,6 +67,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/transaction/{id}/edit', [TransactionController::class, 'edit']);
     Route::put('/transaction/{id}/', [TransactionController::class, 'update']);
     Route::delete('/transaction/{id}/', [TransactionController::class, 'destroy']);
+    Route::post('/ended/{id}', [TransactionController::class, 'ended']);
+    Route::get('/transaction/{id}/confirmation', [TransactionController::class, 'confirmation']);
+    Route::put('/confirmation/{id}', [TransactionController::class, 'agree']);
 
     // income
     Route::get('/income', [IncomeController::class, 'index']);
