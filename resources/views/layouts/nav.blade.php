@@ -19,7 +19,7 @@
     <li class="menu-item ">
         <a href="/history" class="menu-link">
             <i class="menu-icon tf-icons bx bx-transfer"></i>
-            <div data-i18n="myprofile">History</div>
+            <div data-i18n="myprofile">Transaksi</div>
         </a>
     </li>
 </ul>

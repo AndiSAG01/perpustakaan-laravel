@@ -25,9 +25,9 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -92,7 +92,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [MemberController::class, 'index']);
     Route::get('/history', [MemberController::class, 'history']);
     Route::post('/borrow', [MemberController::class, 'borrow']);
