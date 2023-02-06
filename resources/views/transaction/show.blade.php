@@ -14,8 +14,6 @@
         </div>
         <div class="card-body">
             <form action="/transaction/{{ $transaction->id }}" method="POST">
-                {{-- @csrf
-                @method('PUT') --}}
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kode Transaksi</label>
                     <div class="col-sm-10">
@@ -91,7 +89,9 @@
                     <div class="col-sm-10">
                         <div class="input-group input-group-merge">
                             <input type="text" name="description" class="form-control"
-                                id="basic-icon-default-fullname" value="{{ $transaction->description }}" readonly>
+                                id="basic-icon-default-fullname"  @if (Carbon\carbon::now() > $transaction->return) value="Total Denda Rp. {{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) * $transaction->late_id }}"
+                                @else
+                                    value="Total Denda Rp. 0" @endif readonly>
                         </div>
                     </div>
                 </div>

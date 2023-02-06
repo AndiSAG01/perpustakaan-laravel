@@ -70,6 +70,7 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::post('/ended/{id}', [TransactionController::class, 'ended']);
     Route::get('/transaction/{id}/confirmation', [TransactionController::class, 'confirmation']);
     Route::put('/confirmation/{id}', [TransactionController::class, 'agree']);
+    Route::put('/reject/{id}', [TransactionController::class, 'reject']);
 
     // income
     Route::get('/income', [IncomeController::class, 'index']);

@@ -145,7 +145,7 @@ class TransactionController extends Controller
         $formDate = Carbon::createFromDate($return);
         $now = Carbon::now();
         $lateday = $formDate->diffInDays($now);
-        $late_id = late::where('id', 1)->first('body');
+        $late_id = late::where('id', 1)->first()->body;
         $book_id = transaction::where('id', $id)->first()->book->id;
 
         if ($request->return > $now) {
@@ -172,5 +172,14 @@ class TransactionController extends Controller
             Book::find($book_id)->borrow();
         }
         return redirect('transaction')->with('success', 'Tambah Data Berhasil 🤩');
+    }
+
+    public function reject($id){
+        transaction::whereId($id)->update([
+            'status' => 3,
+            'description' => 'Ditolak'
+        ]);
+        return redirect('transaction')->with('success', 'Permintaan telah ditolak 😏');
+
     }
 }

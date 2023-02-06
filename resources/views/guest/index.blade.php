@@ -5,6 +5,7 @@
                 <h1 class="mb-4 fs-9 fw-bold">Presensi Pengunjung</h1>
             </div>
         </div>
+        {{ $get ?? ''}}
         <form action="/presensi" method="post" class="mb-5">
             @csrf
             <div class="mb-3 row">

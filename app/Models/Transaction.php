@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 
 class Transaction extends Model
 {
-    use HasFactory;
+    use HasFactory, Prunable;
 
     protected $fillable = [
         'transactionCode',
@@ -22,6 +23,13 @@ class Transaction extends Model
         'status'
 
     ];
+
+    public function prunable()
+    {
+        return static::where('status', 2)
+                ->where('created_at', '<=', now()
+                ->addHours(2));
+    }
    
     public function user()
     {

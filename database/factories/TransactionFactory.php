@@ -2,9 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
+use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Nette\Utils\Random;
 
 class TransactionFactory extends Factory
 {
@@ -15,16 +19,24 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
+        $random = rand(1, 10);
+        
         return [
             'transactionCode' => 'TRX'.Str::random(5),
-            'book_id'=> rand(1,40),
-            'user_id'=> rand(2, 40),
+            'book_id'=> function() {
+                return Book::all()->random();
+            },
+            'user_id'=> function() {
+                return user::all()->random();
+            },
             'late_id'=> 1,
-            'entry'=> $this->faker->date(),
-            'return'=> $this->faker->date(),
-            'lateDay' => rand(1, 5) . ' Hari',
-            'description' => 'Total Denda Rp. '. Str::random(5),
-            'status'=> false,
+            'entry'=> now()->subYears($random),
+            'return'=> now()->subMonths($random),
+            'lateDay' => 0,
+            'description' => 'Total Denda Rp. '. rand(1,100),
+            'status'=> rand(1, 3),
+            'created_at' => now()->subHours(rand(1,100)),
+            'updated_at' => now()->subHours(rand(1,100)),
         ];
     }
 }

@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Prunable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    public function prunable()
+    {
+        return static::whereNull('email_verified_at')
+                ->where('created_at', '<=', now()
+                ->subMonth());
+    }
 
     /**
      * The attributes that should be cast.

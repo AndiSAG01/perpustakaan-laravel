@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Late;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -13,7 +14,7 @@ class UpdateTransaction extends Command
      *
      * @var string
      */
-    protected $signature = 'upToTrans:cron';
+    protected $signature = 'update:transaction';
 
     /**
      * The console command description.
@@ -38,11 +39,20 @@ class UpdateTransaction extends Command
      * @return int
      */
     public function handle()
-    {
+{
+    $late_id = Late::where('id', 1)->first()->body;
 
-        $expired = Carbon::now()->subHour(24);
-        $transaction = Transaction::where('transaction_status', '=', 'PENDING')->where('created_at', '<=', $expired)->first();
-        $transaction->transaction_status = 'FAILED';
-        $transaction->save();
-    }
+    $transactions = Transaction::where('status', 0)->get();
+        foreach ($transactions as $transaction) {
+            $return = Carbon::parse($transaction->return);
+            $now = Carbon::now();
+            $lateDay = $return->diffInDays($now);
+            $transaction->update([
+                'lateDay' => $lateDay,
+                'description' => 'Total Denda Rp. ' . $lateDay * $late_id,
+
+            ]);
+        }
+}
+
 }
