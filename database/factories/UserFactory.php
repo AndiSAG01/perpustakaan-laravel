@@ -15,7 +15,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        return [
+        $this->faker->locale('id_ID');
+        $startDate = '-10 years';
+        $endDate = '-5 years';
+            return [
             'noId' => $this->faker->randomNumber(8, true),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -23,9 +26,9 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'isAdmin' => false,
-            'birthday' => $this->faker->date(),
+            'birthday' => $this->faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d'),
             'gender' => rand(0, 1),
-            'address' => $this->faker->address(),
+            'address' => $this->faker->streetAddress(),
             'telp' => $this->faker->phoneNumber()
         ];
     }

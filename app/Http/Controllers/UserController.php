@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Imports\UsersImport;
-use Maatwebsite\Excel\Facades\Excel;
+
 class UserController extends Controller
 {
     public function index()
@@ -21,6 +20,7 @@ class UserController extends Controller
         User::create([
             'noId'=> $request->noId,
             'name'=> $request->name,
+            // 'photo'=> $request->photo,
             'password'=> bcrypt('password'),
             'email'=> $request->email,
             'birthday' => $request->birthday,
@@ -54,6 +54,7 @@ class UserController extends Controller
         User::where('id', $id)->update([
             'noId'=> $request->noId,
             'name'=> $request->name,
+            // 'photo'=> $request->photo,
             'email'=> $request->email,
             'birthday' => $request->birthday,
             'gender' => $request->gender,
@@ -73,10 +74,5 @@ class UserController extends Controller
         return redirect('user')->with('success', 'Hapus Data Berhasil 🤐');
     }
 
-    public function import() 
-    {
-        Excel::import(new UsersImport, request()->file('file'));
-        
-        return redirect('user')->with('success', 'Import User Success!');
-    }
+    
 }

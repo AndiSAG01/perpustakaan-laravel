@@ -20,14 +20,14 @@ class BookFactory extends Factory
             'category_id' => function () {
                 return Category::all()->random();
             },
-            'barcode' => Str::random(10),
-            'image' => $this->faker->imageUrl(640, 480, 'cats'),
-            'isbn' => $this->faker->ean13(),
-            'title' => "Buku " . $this->faker->words(3, true) ,
+            'barcode' => $this->faker->ean13(),
+            'image' => $this->faker->imageUrl(640, 480, 'books', true),
+            'isbn' => $this->faker->isbn10(),
+            'title' => $this->faker->sentence(4) ,
             'author' => $this->faker->name(),
             'publisher'=> $this->faker->company(),
             'publicationYear' => $this->faker->year(),
-            'stock' => rand(1, 100),
+            'stock' => rand(1, 50),
         ];
     }
 }
