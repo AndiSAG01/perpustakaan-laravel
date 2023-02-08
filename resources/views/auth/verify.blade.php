@@ -3,7 +3,7 @@
 
         <div class="card-body">
             @if (session('resent'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-primary" role="alert">
                     {{ __('Tautan verifikasi baru telah dikirim ke alamat email Anda.') }}
                 </div>
             @else

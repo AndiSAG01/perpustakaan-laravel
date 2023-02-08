@@ -78,7 +78,7 @@
             <div data-i18n="letter">Surat Keterangan</div>
         </a>
     </li>
-    @else
+    @elseif (Auth::user()->isAdmin == 0)
     <li class="menu-item ">
         <a href="/dashboard" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>

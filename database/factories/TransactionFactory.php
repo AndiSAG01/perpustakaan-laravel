@@ -34,7 +34,7 @@ class TransactionFactory extends Factory
             'return'=> now()->subMonths($random),
             'lateDay' => 0,
             'description' => 'Total Denda Rp. '. rand(1,100),
-            'status'=> rand(1, 3),
+            'status'=> rand(0, 3),
             'created_at' => now()->subHours(rand(1,100)),
             'updated_at' => now()->subHours(rand(1,100)),
         ];
