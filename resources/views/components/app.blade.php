@@ -46,7 +46,10 @@
     {{-- datatables --}}
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/dt-1.13.1/sp-2.1.0/datatables.min.css" />
-</head>
+
+        @cloudinaryJS
+
+    </head>
 
 
 <body>

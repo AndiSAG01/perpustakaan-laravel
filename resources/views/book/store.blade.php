@@ -23,7 +23,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col mb-3 d-none">
+                    <div class="col mb-3">
                         <label for="image" class="form-label">Cover</label>
                         <input type="file" id="image" class="form-control" value="{{ old('image') }}"
                             name="image">

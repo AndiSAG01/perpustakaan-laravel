@@ -168,6 +168,8 @@ return [
         
         // barcode
         Milon\Barcode\BarcodeServiceProvider::class,
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+
        
 
 
