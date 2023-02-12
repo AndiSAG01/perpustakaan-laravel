@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'DATA LAPORAN SI PERPUS'}}</title>
+    <title>{{ $title ?? 'DATA LAPORAN SI PERPUS' }}</title>
 
     <meta name="description" content="" />
 
@@ -45,18 +45,18 @@
 
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.4.0/css/searchBuilder.dataTables.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.4.0/css/searchBuilder.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
 
 
     <style>
         @media print {
-            
-        @page {
-        size: A4;
-        }
-        
+
+            @page {
+                size: A4;
+            }
+
 
         }
     </style>
@@ -153,8 +153,8 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="/assets/img/avatars/1.png" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999) }}"
+                                            alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -163,8 +163,8 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999)}}" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999) }}"
+                                                            alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
@@ -177,7 +177,7 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
-                                   
+
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -216,7 +216,7 @@
 
                     <!-- / Content -->
                 </div>
-               
+
 
                 <div class="content-backdrop fade"></div>
             </div>
@@ -252,26 +252,26 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     {{-- datatables --}}
-   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
-   <script src="https://cdn.datatables.net/searchbuilder/1.4.0/js/dataTables.searchBuilder.min.js"></script>
-   <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-   <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
-   <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/searchbuilder/1.4.0/js/dataTables.searchBuilder.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     <script>
         $(document).ready(function() {
-    $('#myTable').DataTable( {
-        dom: 'QBfrtip',
-        buttons: [
-            'copy', 'excel', 'pdf', 'print',
-            
-        ]
-    } );
-} );
+            $('#myTable').DataTable({
+                dom: 'QBfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf', 'print',
+
+                ]
+            });
+        });
     </script>
 </body>
 

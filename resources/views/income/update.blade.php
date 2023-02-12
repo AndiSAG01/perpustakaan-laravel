@@ -17,7 +17,7 @@
                                   <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                           class="bx bx-food-menu"></i></span>
                                    <select class="form-select" name="transaction_id" required>
-                                      <option value="" selected disabled>Pilih Ulang</option>
+                                      <option value="{{ $income->transaction->id }}" selected>{{$income->transaction->user->name}}</option>
                                       @foreach ($transactions as $item)
                                       <option value="{{ $item->user->id }}">{{ $item->user->name }} ( {{ $item->user->noId }} )</option>
                                       @endforeach

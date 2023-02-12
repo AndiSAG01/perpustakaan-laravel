@@ -42,8 +42,8 @@ class UpdateTransaction extends Command
 {
     $late_id = Late::where('id', 1)->first()->body;
 
-    $transactions = Transaction::where('status', 0)->get();
-        foreach ($transactions as $transaction) {
+    $transactions = Transaction::where('status', 0)->where('return', '<=', now())->get();
+    foreach ($transactions as $transaction) {
             $return = Carbon::parse($transaction->return);
             $now = Carbon::now();
             $lateDay = $return->diffInDays($now);
@@ -53,6 +53,19 @@ class UpdateTransaction extends Command
 
             ]);
         }
+
+    $ongoing = Transaction::where('status', 0)->where('return', '>=', now())->get();
+    foreach ($ongoing as $going)
+        $going->update([
+            'description' => 'Masih Dipinjam'
+        ]);
+
+    $ends = Transaction::whereStatus(1)->get();
+    foreach ($ends as $end){
+        $end->update([
+            'description' => 'Peminjaman selesai'
+        ]);
+    }
 }
 
 }

@@ -47,9 +47,9 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/dt-1.13.1/sp-2.1.0/datatables.min.css" />
 
-        @cloudinaryJS
+    @cloudinaryJS
 
-    </head>
+</head>
 
 
 <body>
@@ -142,8 +142,8 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999)}}" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999) }}"
+                                            alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -152,15 +152,16 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="/assets/img/avatars/1.png" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999) }}"
+                                                            alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">{{ Auth::user()->name ?? ''}}</span>
+                                                    <span
+                                                        class="fw-semibold d-block">{{ Auth::user()->name ?? '' }}</span>
                                                     <small class="text-muted">
                                                         @if (Auth::user()->isAdmin == 1)
-                                                        Administrator
+                                                            Administrator
                                                         @endif
                                                         Anggota
                                                     </small>

@@ -31,7 +31,7 @@ class TransactionFactory extends Factory
             },
             'late_id'=> 1,
             'entry'=> now()->subYears($random),
-            'return'=> now()->subMonths($random),
+            'return'=> now()->addMonths($random),
             'lateDay' => 0,
             'description' => 'Total Denda Rp. '. rand(1,100),
             'status'=> rand(0, 3),

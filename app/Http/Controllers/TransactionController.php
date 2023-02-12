@@ -35,20 +35,22 @@ class TransactionController extends Controller
     
     public function store(TransactionRequest $request)
     {
+        $late_id = late::first()->id;
         $return = $request->return;
         $formDate = Carbon::createFromDate($return);
         $now = Carbon::now();
         $lateday = $formDate->diffInDays($now);
+
 
         if ($request->return > $now) {
             Transaction::create([
                 'transactionCode' => 'TRX'.Str::random(5),
                 'book_id'=> $request->book_id,
                 'user_id'=> $request->user_id,
-                'late_id'=> $request->late_id,
+                'late_id'=> $late_id,
                 'entry'=> $request->entry,
                 'return'=> $request->return,
-                'lateDay' => '',
+                'lateDay' => 0,
                 'description' => 'Masih Dipinjam',
                 'status'=> false,
                 'book' => Book::find($request->book_id)->borrow(),
@@ -58,7 +60,7 @@ class TransactionController extends Controller
                 'transactionCode' => 'TRX'.Str::random(5),
                 'book_id'=> $request->book_id,
                 'user_id'=> $request->user_id,
-                'late_id'=> $request->late_id,
+                'late_id'=> $late_id,
                 'entry'=> $request->entry,
                 'return'=> $request->return,
                 'lateDay' => $lateday,
@@ -121,6 +123,8 @@ class TransactionController extends Controller
     {
         Transaction::where('id', $id)->update([
             'status'=> true,
+            'return'=> now(),
+            'description' => 'Peminjaman selesai',
         ]);
         return redirect('transaction')->with('success', 'Buku Berhasil Dikembalikan 🤩');
     }

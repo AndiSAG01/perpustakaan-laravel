@@ -36,7 +36,7 @@ class HomeController extends Controller
                    ->setDataset([$user, $book, $entry, $return, $late])
                    ->setLabels(['User', 'Buku', 'Peminjaman', 'Pengembalian', 'Denda']);
 
-        // $guests = Guest::whereYear('created_at', Carbon::now()->year)->orderBy('created_at','asc')->distinct()->get();
+        // $guests = Guest::whereYear('created_at', Carbon::now()->year)->orderBy('created_at','asc')->distinct()->limit(12)->get();
         $guests = Guest::orderBy('created_at','asc')->distinct()->limit(10)->get();
 
         $created_at = [];

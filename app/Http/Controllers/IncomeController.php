@@ -25,10 +25,16 @@ class IncomeController extends Controller
 
     public function store(IncomeRequest $request)
     {
-        $request = Income::create([
+        Income::create([
             'transaction_id' => $request->transaction_id,
             'date' => $request->date,
             'description' => $request->description
+        ]);
+
+        Transaction::where('id', $request->transaction_id)->update([
+            'status'=> true,
+            'return'=> now(),
+            'description' => 'Peminjaman selesai',
         ]);
 
         return redirect('income')->with('success', 'Tambah Data Sukses 😙');

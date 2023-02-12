@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Http\Controllers\CloudinaryStorage;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,14 +27,10 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
-        $uploadedFileUrl = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
-
-        $result = $uploadedFileUrl->getFileName();
-
-        dd($result);
-        Book::create([
-            'image' => $image,
-            'publicId' => $publicId,
+        // $image = $request->file('image');
+        // $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
+        $tes = Book::create([
+            // 'image' => $result,
             'title' => $request->title,
             'isbn' => $request->isbn,
             'category_id' => $request->category_id,
