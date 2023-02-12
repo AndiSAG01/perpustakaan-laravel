@@ -23,14 +23,14 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    {{-- <div class="col mb-3 d-none">
-                        <label for="image" class="form-label">Image</label>
+                    <div class="col mb-3">
+                        <label for="image" class="form-label">Cover</label>
                         <input type="file" id="image" class="form-control" value="{{ $book->image }}"
                             name="image">
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div> --}}
+                    </div>
 
                     <div class="col mb-3">
                         <label for="isbn" class="form-label">ISBN Buku</label>

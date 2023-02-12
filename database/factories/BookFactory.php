@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'barcode' => $this->faker->ean13(),
             'image' => $this->faker->imageUrl(640, 480, 'books', true),
             'isbn' => $this->faker->isbn10(),
-            'title' => $this->faker->sentence(4) ,
+            'title' => 'Buku' . $this->faker->sentence(4) ,
             'author' => $this->faker->name(),
             'publisher'=> $this->faker->company(),
             'publicationYear' => $this->faker->year(),

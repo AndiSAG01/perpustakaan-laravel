@@ -14,7 +14,7 @@ class GuestFactory extends Factory
     public function definition()
     {
         $this->faker->locale('id_ID');
-        $startDate = '-10 years';
+        $startDate = now();
         $endDate = now();
         $faker = $this->faker;
         return [

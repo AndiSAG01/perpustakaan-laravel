@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'noId',
         'name',
         'photo',
+        'publicId',
         'email',
         'password',
         'isAdmin',

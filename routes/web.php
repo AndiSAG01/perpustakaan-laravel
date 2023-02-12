@@ -78,6 +78,8 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::get('/income/{id}/edit', [IncomeController::class, 'edit']);
     Route::put('/income/{id}', [IncomeController::class, 'update']);
     Route::delete('/income/{id}', [IncomeController::class, 'destroy']);
+    Route::get('/income/{id}/pay', [IncomeController::class, 'pay']);
+    Route::post('/pay/{id}', [IncomeController::class, 'repay']);
 
     // report
     Route::get('/report/users', [ReportController::class, 'users']);

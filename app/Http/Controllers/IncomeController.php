@@ -21,13 +21,11 @@ class IncomeController extends Controller
             'books' => Book::all(),        
             'lates' => Late::all(),  
         ]);
-
-        
     }
 
     public function store(IncomeRequest $request)
     {
-        Income::create([
+        $request = Income::create([
             'transaction_id' => $request->transaction_id,
             'date' => $request->date,
             'description' => $request->description
@@ -50,6 +48,7 @@ class IncomeController extends Controller
 
     public function update($id, IncomeRequest $request)
     {
+        
         Income::where('id', $id)->update([
             'transaction_id' => $request->transaction_id,
             'date' => $request->date,
@@ -65,4 +64,27 @@ class IncomeController extends Controller
         
         return redirect('income')->with('success', 'Hapus Data Berhasil 😎');
     }
+
+    public function pay($id){
+        return view('income.store',[
+            'pay' => Transaction::whereId($id)->first(),
+            'incomes' => Income::get(),
+            'transactions' => Transaction::get(),
+            'users' => User::all(),
+            'books' => Book::all(),        
+            'lates' => Late::all(),  
+            ]);
+    }
+
+    // public function repay(Request $request){
+
+    //     $tes = Income::create([
+    //         'transaction_id' => $request->transaction_id,
+    //         'date' => $request->date,
+    //         'description' => $request->description
+    //     ]);
+    //     dd($tes);
+
+    //     return redirect('transaction')->with('success', 'Denda pengembalian buku telah selesai 😎');
+    // }
 }

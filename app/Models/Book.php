@@ -13,6 +13,7 @@ class Book extends Model
     protected $fillable = [
         'barcode',
         'image',
+        'publicId',
         'category_id',
         'isbn',
         'title',

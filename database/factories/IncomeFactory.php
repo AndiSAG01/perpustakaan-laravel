@@ -20,7 +20,7 @@ class IncomeFactory extends Factory
                 return Transaction::all()->random();
             },
             'date' => Carbon::now()->format('Y-m-d'),
-            'description' => $this->faker->paragraph()
+            'description' => $this->faker->word()
         ];
     }
 }

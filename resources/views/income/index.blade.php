@@ -10,7 +10,7 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Tambah Data Bayar Denda</h5> <small class="text-muted float-end">Merged input
+                    <h5 class="mb-0">Pembayaran Denda</h5> <small class="text-muted float-end">Merged input
                         group</small>
                 </div>
                 <div class="card-body">
@@ -21,15 +21,8 @@
                                 Lengkap</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-food-menu"></i></span>
-                                    <select class="form-select" name="transaction_id">
-                                        <option selected>Select one</option>
-                                        
-                                        @foreach ($transactions as $item)
-                                            <option value="{{ $item->user->id }}">{{ $item->user->name }} (
-                                                {{ $item->user->noId }} )</option>
-                                        @endforeach
+                                    <select class="form-select" name="transaction_id" required>
+                                        <option value="{{$pay->id}}" selected>{{ $pay->user->name }}</option>
                                     </select>
                                 </div>
                                 @error('transaction_id')
@@ -42,10 +35,9 @@
                                 Pembayaran</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-date2" class="input-group-text"><i
-                                            class="bx bx-receipt"></i></span>
+                                    
                                     <input type="date" class="form-control" id="basic-icon-default-date"
-                                        name="date" value="{{ old('date') }}">
+                                        name="date" value="{{ carbon\carbon::now()->format('Y-m-d') ?? old('date') }}">
                                 </div>
                                 @error('date')
                                     <span class="text-danger">{{ $message }}</span>

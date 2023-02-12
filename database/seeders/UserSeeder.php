@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class UserSeeder extends Seeder
                 'noId' => '1234567890',
                 'name' => 'testing',
                 'email' => 'testing@testing.com',
+                'email_verified_at' => Carbon::now(),
                 'password' => bcrypt('testing'),
                 'isAdmin' => true,
                 'birthday' => now(),
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
                 'noId' => '1234567897',
                 'name' => 'user',
                 'email' => 'user@user.com',
+                'email_verified_at' => null,
                 'password' => bcrypt('password'),
                 'isAdmin' => false,
                 'birthday' => now(),

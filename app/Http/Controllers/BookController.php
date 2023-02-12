@@ -27,10 +27,14 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
-        $image = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-        // dd($image);
+        $uploadedFileUrl = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+
+        $result = $uploadedFileUrl->getFileName();
+
+        dd($result);
         Book::create([
             'image' => $image,
+            'publicId' => $publicId,
             'title' => $request->title,
             'isbn' => $request->isbn,
             'category_id' => $request->category_id,
