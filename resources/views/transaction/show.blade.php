@@ -46,7 +46,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="text" name="late_id" class="form-control"
-                                    id="basic-icon-default-fullname" value="Rp. {{ $transaction->late_id }}" readonly>
+                                    id="basic-icon-default-fullname" value="Rp. {{ $transaction->late->body }}" readonly>
                             </div>
                         </div>
                     </div>
