@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TransactionRequest;
 use App\Models\Book;
+use App\Models\Guest;
+use App\Models\Income;
 use App\Models\Late;
 use App\Models\Transaction;
 use App\Models\User;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +19,36 @@ class MemberController extends Controller
 {
     public function index()
     {
+        $presensi = Guest::whereId(auth::user()->id)->count();
+        $transaction = Transaction::whereId(auth::user()->id)->count();
+        $late = Income::whereId(auth::user()->id)->count();
+    
+        $chart = (new LarapexChart)
+            ->setDataset([$presensi, $transaction, $late])
+            ->setLabels(['Presensi', 'Transaksi', 'Denda']);
+    
+        $guests = Guest::whereId(auth::user()->id)->get();
+    
+        $created_at = [];
+        $mount = [];
+        foreach ($guests as $guest) {
+            $created_at[] = $guest->created_at->format('Y-m-d');
+            $mount[] = $guest->created_at->format('M');
+        }
+    
+        $chart2 = (new LarapexChart)
+            ->setType('area')
+            ->setXAxis($mount)
+            ->setDataset([
+                [
+                    'name' => 'Pengunjung Perpustakaan',
+                    'data' => $created_at,
+                ],
+            ]);
         return view('member.index', [
             'transaction' => Transaction::where('user_id', Auth()->user()->id)->get(),
+            'chart' => $chart,
+            'chart2' => $chart2,
 
         ]);
     }

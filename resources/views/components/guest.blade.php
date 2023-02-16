@@ -58,7 +58,8 @@
                         @auth
                             <ul class="navbar-nav ms-auto">
                                 @if (Auth::user()->isAdmin == true)
-                                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/home">Home</a>
+                                    <li class="nav-item"><a class="nav-link" aria-current="page"
+                                            href="/home">Dashboard</a>
                                     </li>
                                 @else
                                     <li class="nav-item"><a class="nav-link" aria-current="page"
@@ -66,6 +67,8 @@
                                     </li>
                                 @endif
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/presensi">Presensi</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" aria-current="page" href="/find">Cari Buku</a>
                                 </li>
                             </ul>
                         @else

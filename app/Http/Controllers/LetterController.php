@@ -12,7 +12,7 @@ class LetterController extends Controller
 {
     public function index(){
         return view('letter.index', [
-            'letters' => Letter::get(),
+            'letters' => Letter::orderby('updated_at', 'desc')->get(),
             'users' => User::get()
         ]);
     }

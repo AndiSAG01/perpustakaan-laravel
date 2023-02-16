@@ -15,30 +15,31 @@
                 <form action="/transaction" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="col mb-3">
-                            <label for="user_id" class="form-label">nama peminjam</label>
-                            <select class="form-select form-select" name="user_id" id="user_id">
-                                <option selected disabled>Select one</option>
+                        <div class="mb-3">
+                            <label for="exampleDataList" class="form-label">nama Peminjam</label>
+                            <input class="form-control" list="datalistOptions" name="user_id" id="user_id" placeholder="Type to search...">
+                            <datalist id="datalistOptions">
                                 @foreach ($users as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
-                            </select>
-                            @error('')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col mb-3">
-                            <label for="book_id" class="form-label">judul buku</label>
-                            <select class="form-select form-select" name="book_id" id="book_id">
-                                <option selected disabled>Select one</option>
-                                @foreach ($books as $key)
-                                    <option value="{{ $key->id }}">{{ $key->title }}</option>
+                             </datalist>
+                             @error('user_id')
+                             <span class="text-danger">{{ $message }}</span>
+                         @enderror
+                          </div>
+
+                        <div class="mb-3">
+                            <label for="exampleDataList" class="form-label">Buku yang dipinjam</label>
+                            <input class="form-control" list="datalistOptionsbooks" name="book_id" id="book_id" placeholder="Type to search...">
+                            <datalist id="datalistOptionsbooks">
+                                @foreach ($books as $item)
+                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
-                            </select>
-                            @error('')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                             </datalist>
+                             @error('book_id')
+                             <span class="text-danger">{{ $message }}</span>
+                         @enderror
+                          </div>
                         <div class="col mb-3">
                             <label for="entry" class="form-label">tanggal pinjam</label>
                             <input type="date" class="form-control" name="entry" id="entry"

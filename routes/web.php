@@ -109,6 +109,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/presensi', [GuestController::class, 'index']);
 Route::post('/presensi', [GuestController::class, 'store']);
 Route::get('/idcard', [GuestController::class, 'idcard']);
+Route::get('/idcard/{id}', [GuestController::class, 'scan']);
 Route::post('/search', [GuestController::class, 'search']);
 Route::view('/', 'test');
 Route::view('/find', 'findBook');

@@ -18,7 +18,7 @@ class BookController extends Controller
         ->get();
 
         return view('book.index', [
-            'books' => Book::all(),
+            'books' => Book::orderby('updated_at', 'desc')->get(),
             'categories' => Category::get(),
             'total' => $total
             

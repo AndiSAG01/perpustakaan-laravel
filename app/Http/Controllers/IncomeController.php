@@ -15,7 +15,7 @@ class IncomeController extends Controller
     public function index()
     {
         return view('income.index', [
-            'incomes' => Income::get(),
+            'incomes' => Income::orderby('updated_at', 'desc')->get(),
             'transactions' => Transaction::get(),
             'users' => User::all(),
             'books' => Book::all(),        

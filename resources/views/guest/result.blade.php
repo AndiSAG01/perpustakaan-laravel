@@ -63,7 +63,7 @@
                         <small>“Terwujudnya siswa berkarakter, Berprestasi, menguasai IPTEK, dan Berwawasan Lingkungan”</small>
                         <div class="container text-center">
                             <div class="card-body mb-2">
-                                {!! DNS2D::getBarcodeSVG("{{ $user->noId }}", 'QRCODE',7,7, 'white') !!} <br> <small>{{ $user->noId }}</small>
+                                {!! DNS2D::getBarcodeSVG(url('idcard/'.$user->id), 'QRCODE',7,7, 'white') !!} <br> <small>{{ $user->noId }}</small>
                             </div>
                             <small>Kartu Identitas Anggota Perpustakaan <br> SMA Negeri 1 Kota Jambi</small>
                         </div>
@@ -91,24 +91,25 @@
                         </div>
                         <div class="container text-start" id="user">
                             <div class="row px-2 justify-content-center">
-                                <div class="col-5">Email</div>
+                                <div class="col-4">Email</div>
                                 <div class="col-1">:</div>
-                                <div class="col-5">{{ Str::limit($user->email, 17, '...')}}</div>
+                                <div class="col">{{ Str::limit($user->email, 17, '...')}}</div>
                             </div>
                             <div class="row px-2 justify-content-center">
-                                <div class="col-5">Tanggal Lahir</div>
+                                <div class="col-4">Tanggal Lahir</div>
                                 <div class="col-1">:</div>
-                                <div class="col-5">{{ Str::limit($user->birthday, 17, '...') }}</div>
+                                <div class="col">{{ \Carbon\Carbon::parse($user->birthday)->format('d M Y') }}</div>
+
                             </div>
                             <div class="row px-2 justify-content-center">
-                                <div class="col-5">Alamat</div>
+                                <div class="col-4">Alamat</div>
                                 <div class="col-1">:</div>
-                                <div class="col-5">{{ Str::limit($user->address, 17, '...') }}</div>
+                                <div class="col">{{ Str::limit($user->address, 17, '...') }}</div>
                             </div>
                             <div class="row px-2 justify-content-center">
-                                <div class="col-5">Telp</div>
+                                <div class="col-4">Telp</div>
                                 <div class="col-1">:</div>
-                                <div class="col-5">{{ Str::limit($user->telp, 17, '...') }}</div>
+                                <div class="col">{{ Str::limit($user->telp, 17, '...') }}</div>
                             </div>
                         </div>
 
