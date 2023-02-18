@@ -11,10 +11,18 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Buku</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/book/{id}" method="POST" enctype="multipart/form-data">
+            <form action="/book/{{ $book->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
+                    <div class="col mb-3 d-none">
+                        <label for="publicId" class="form-label d-none">publicId</label>
+                        <input type="text" id="publicId" class="form-control" value="{{ $book->publicId }}"
+                            name="publicId" placeholder="Enter publicId">
+                        @error('publicId')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="col mb-3">
                         <label for="title" class="form-label">Judul buku</label>
                         <input type="text" id="title" class="form-control" value="{{ $book->title }}"
@@ -24,12 +32,15 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
-                        <label for="image" class="form-label">Cover</label>
-                        <input type="file" id="image" class="form-control" value="{{ $book->image }}"
-                            name="image">
+                        <label for="image" class="form-label">image</label>
+                        <input type="file" id="image" class="form-control" name="image">
+                        @if (@error == true)
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                        @else
+                            <span>Jangan inputkan gambar jika tidak ingin mengubah gambar</span>
+                        @endif
                     </div>
 
                     <div class="col mb-3">

@@ -39,8 +39,8 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Kategori Buku</th>
                         <th>Judul Buku</th>
+                        <th>Kategori Buku</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -48,8 +48,8 @@
                     @foreach ($books as $no => $item)
                         <tr>
                             <td>{{ ++$no }}</td>
-                            <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->title }}</td>
+                            <td>{{ $item->category->name ?? '' }}</td>
                             <td class="d-flex gap-1">
                                 <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
                             </td>

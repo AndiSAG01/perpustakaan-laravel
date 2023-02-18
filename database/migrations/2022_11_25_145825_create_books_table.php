@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('barcode')->nullable();
             $table->string('image')->nullable();
+            $table->string('publicId')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('isbn');
             $table->string('title');
