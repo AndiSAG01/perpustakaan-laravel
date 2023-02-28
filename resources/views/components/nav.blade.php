@@ -14,11 +14,19 @@
             </a>
         </li>
 
+        <!-- administator -->
+        <li class="menu-item ">
+            <a href="/admin" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="User">Administrator</div>
+            </a>
+        </li>
+
         <!-- Member -->
         <li class="menu-item ">
             <a href="/user" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="User">User</div>
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="User">Anggota</div>
             </a>
         </li>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
@@ -46,7 +47,7 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::put('/book/{id}', [BookController::class, 'update']);
     Route::delete('/book/{id}', [BookController::class, 'destroy']);
 
-    // user
+    // administrator
     Route::get('/user', [UserController::class, 'index']);
     Route::post('/user', [UserController::class, 'store']);
     Route::get('/user/{id}/show', [UserController::class, 'show']);
@@ -54,6 +55,16 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
     Route::post('/user/excel', [UserController::class, 'import']);
+
+    // _users
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::post('/admin', [AdminController::class, 'store']);
+    Route::get('/admin/{id}/show', [AdminController::class, 'show']);
+    Route::get('/admin/{id}/edit', [AdminController::class, 'edit']);
+    Route::put('/admin/{id}', [AdminController::class, 'update']);
+    Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
+    Route::get('/print/{id}', [AdminController::class, 'print']);
+
 
     // late
     Route::get('/late', [LateController::class, 'index']); 

@@ -1,33 +1,20 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeUser">
-    Tambah anggota
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeAdmin">
+    Tambah administrator
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="storeUser" tabindex="-1" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="storeAdmin" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center fw-bold text-primary">Tambah anggota</h5>
+                <h5 class="modal-title text-center fw-bold text-primary">Tambah administrator</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <hr>
-            <form action="/user" method="POST" enctype="multipart/form-data">
+            <form action="/admin" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <div class="col mb-3">
-                        <label for="status" class="form-label">Status</label> <br>
-                        <div class="form-check form-check-inline mt-3">
-                            <input class="form-check-input" type="radio" name="status"
-                                id="siswa" value="0">
-                            <label class="form-check-label" for="siswa">Siswa/i</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="guru"
-                            value="1">
-                            <label class="form-check-label" for="guru">Guru</label>
-                        </div>
-                    </div>
                     <div class="col mb-3">
                         <label for="noId" class="form-label">no. identitas</label>
                         <input type="number" value="{{ old('noId') }}" id="noId" class="form-control"
@@ -104,7 +91,8 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <input type="hidden" name="isAdmin" value="0">
+                    <input type="hidden" name="isAdmin" value="1">
+                    <input type="hidden" name="status" value="2">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>

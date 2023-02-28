@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -17,10 +18,26 @@ class BookController extends Controller
         ->with('category')
         ->get();
 
+        $counts = [];
+        $names = [];
+
+        foreach ($total as $item) {
+            $names[] = $item->category->name;
+            $counts[] = $item->jumlah;
+        }
+
+        $chart = (new LarapexChart)
+            ->setType('pie')
+            ->setWidth(600)
+            ->setLabels($names)
+            ->setDataset($counts);
+
+
         return view('book.index', [
             'books' => Book::orderby('updated_at', 'desc')->get(),
             'categories' => Category::get(),
-            'total' => $total
+            'chart' => $chart
+
             
         ]);
     }

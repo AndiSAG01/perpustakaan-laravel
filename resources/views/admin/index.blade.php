@@ -1,12 +1,5 @@
 <x-app>
     <div class="card-body">
-        <h5 class="fw-bold text-center">Kategori Buku</h5>
-                <div class="col d-flex">
-                    {!! $chart->container() !!}
-                </div>
-                <a class="btn btn-primary mt-3" href="/category">Selengkapnya...</a>
-    </div>
-    <div class="card-body">
         @if ($message = Session::get('success'))
             <div class="alert alert-primary alert-block">
                 <strong>{{ $message }}</strong>
@@ -15,29 +8,47 @@
             <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
         @endif
         <div class="card-header">
-            <h5 class="fw-bold text-center">Data Buku</h5>
-            @include('book.store')
+            <h5 class="fw-bold text-center">Data administrator</h5>
+            <div class="col">
+                @include('admin.store')
+
+            </div>
         </div>
         <div class="table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Judul Buku</th>
-                        <th>Kategori Buku</th>
-                        <th>Stok</th>
+                        <th>No Identitas</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Keanggotaan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach ($books as $no => $item)
+                    @foreach ($users as $no => $item)
                         <tr>
                             <td>{{ ++$no }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->category->name ?? '' }}</td>
-                            <td>{{ $item->stock }} exampler</td>
+                            <td>{{ $item->noId }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                @if ($item->gender == '0')
+                                    Laki-laki
+                                @else
+                                    Perempuan
+                                @endif
+                            </td>
+                            <td>
+                                @if ($item->isAdmin == true)
+                                    Admin
+                                @else
+                                    Anggota
+                                @endif
+                            </td>
+
                             <td class="d-flex gap-1">
-                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
+                                <a href="/admin/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
                             </td>
                         </tr>
                     @endforeach
@@ -45,11 +56,6 @@
             </table>
         </div>
     </div>
-
-    <script src="{{ $chart->cdn() }}"></script>
-
-    {{ $chart->script() }}
-
     <script type="text/javascript">
         setTimeout(function() {
 

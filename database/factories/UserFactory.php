@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'isAdmin' => false,
+            'status' => rand(0,2),
             'birthday' => $this->faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d'),
             'gender' => rand(0, 1),
             'address' => $this->faker->streetAddress(),

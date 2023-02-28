@@ -10,25 +10,55 @@ class UserController extends Controller
 {
     public function index()
     {
+        $student = User::where('status', 0)->get();
+        $teacher = User::where('status', 1)->get();
+
         return view('user.index', [
-            'users' => User::orderby('updated_at', 'desc')->get()
+            'student' => $student,
+            'teacher' => $teacher,
         ]);
     }
 
     public function store(UserRequest $request)
     {
-        User::create([
-            'noId'=> $request->noId,
-            'name'=> $request->name,
-            // 'photo'=> $request->photo,
-            'password'=> bcrypt('password'),
-            'email'=> $request->email,
-            'birthday' => $request->birthday,
-            'isAdmin' => $request->isAdmin,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'telp' => $request->telp,
-        ]);
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $result = cloudinary()->upload($photo->getRealPath(), ['folder' => 'user']);
+            $url = $result->getSecurePath();
+            $publicId = $result->getPublicId();
+            User::create([
+                'noId'=> $request->noId,
+                'name'=> $request->name,
+                'photo'=> $url,
+                'publicId' => $publicId,
+                'password'=> bcrypt('password'),
+                'email_verified_at'=> now(),
+                'remember_token' => rand(),
+                'email'=> $request->email,
+                'status' => $request->status,
+                'birthday' => $request->birthday,
+                'isAdmin' => false,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'telp' => $request->telp,
+            ]);
+
+        }else{
+            User::create([
+                'noId'=> $request->noId,
+                'name'=> $request->name,
+                'email_verified_at'=> now(),
+                'remember_token' => rand(),
+                'password'=> bcrypt('password'),
+                'email'=> $request->email,
+                'status' => $request->status,
+                'birthday' => $request->birthday,
+                'isAdmin' => false,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'telp' => $request->telp,
+            ]);
+        }
 
         return redirect('user')->with('success', 'Tambah Data Sukses 😙');
     }
@@ -51,18 +81,32 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update([
-            'noId'=> $request->noId,
-            'name'=> $request->name,
-            // 'photo'=> $request->photo,
-            'email'=> $request->email,
-            'birthday' => $request->birthday,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'telp' => $request->telp,
-            'isAdmin' => $request->isAdmin,
+        $user = User::find($id);
+        if ($request->hasFile('image')) {            
+            $image = $request->file('image');
+            $result = cloudinary()->upload($image->getRealPath(), ['folder' => 'user']);
+            $url = $result->getSecurePath();
+            $publicId = $result->getPublicId();
 
-        ]);
+            $user->image = $url;
+            $user->publicId = $publicId;
+            if($request->publicId == true){
+                Cloudinary()->destroy($request->publicId);
+            }
+        }
+        $user->noId = $request->noId;
+        $user->name = $request->name;
+        $user->password = bcrypt('password');
+        $user->email_verified_at = now();
+        $user->remember_token = rand();
+        $user->email = $request->email;
+        $user->status = $request->status;
+        $user->birthday = $request->birthday;
+        $user->isAdmin = false;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->telp = $request->telp;
+        $user->save();
 
         return redirect('user')->with('success', 'Update Data Berhasil 🤩');
     }
@@ -73,6 +117,5 @@ class UserController extends Controller
 
         return redirect('user')->with('success', 'Hapus Data Berhasil 🤐');
     }
-
     
 }
