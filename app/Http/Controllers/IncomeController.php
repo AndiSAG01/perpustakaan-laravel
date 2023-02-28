@@ -19,7 +19,9 @@ class IncomeController extends Controller
             'transactions' => Transaction::get(),
             'users' => User::all(),
             'books' => Book::all(),        
-            'lates' => Late::all(),  
+            'lates' => Late::whereId(1)->first(), 
+            'telat' => Transaction::Where('lateDay', '>', 0)->orderby('updated_at', 'desc')->get(),
+ 
         ]);
     }
 

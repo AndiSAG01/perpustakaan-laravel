@@ -1,10 +1,25 @@
 <x-app>
-    <div class="card-body">
-        <h5 class="fw-bold text-center">Kategori Buku</h5>
-                <div class="col d-flex">
-                    {!! $chart->container() !!}
-                </div>
-                <a class="btn btn-primary mt-3" href="/category">Selengkapnya...</a>
+    <style>
+        #morph {
+            /* From https://css.glass */
+            background: rgba(89, 99, 123, 0.24);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8.7px);
+            -webkit-backdrop-filter: blur(8.7px);
+            border: 1px solid rgba(89, 99, 123, 0.88);
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <div class="card-header">
+        <div class="container" id="morph">
+            <h5 class="fw-bold text-center">Kategori Buku</h5>
+            <div class="col d-flex">
+                {!! $chart->container() !!}
+            </div>
+            <a class="btn btn-primary mt-3" href="/category">Selengkapnya...</a>
+        </div>
     </div>
     <div class="card-body">
         @if ($message = Session::get('success'))
@@ -37,7 +52,8 @@
                             <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->stock }} exampler</td>
                             <td class="d-flex gap-1">
-                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
+                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i
+                                        class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
                             </td>
                         </tr>
                     @endforeach

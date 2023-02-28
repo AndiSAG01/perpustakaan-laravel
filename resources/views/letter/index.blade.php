@@ -124,7 +124,7 @@
                             <form action="/letter/{{ $item->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                <button type="submit" class="btn btn-danger"><i class="bx bx-trash-alt bx-xs"></i>Hapus</button>
                             </form>
                             <a href="/letter/{{ $item->id }}/print" class="btn btn-secondary">Cetak</a>
                         </td>

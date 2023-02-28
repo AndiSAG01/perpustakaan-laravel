@@ -90,12 +90,12 @@
                     </div>
 
                     <div class="card-footer d-flex gap-3">
-                        <a href="/book" class="btn btn-secondary">Back</a>
+                        <a href="/book" class="btn btn-secondary"><i class="bx bx-arrow-back bx-xs"></i> Back</a>
                         @include('book.edit')
                         <form action="/book/{{ $book->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i> Delete</button>
                         </form>
                     </div>
             {{-- </form> --}}

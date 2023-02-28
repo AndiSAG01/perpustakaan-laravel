@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateAdmin">
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateAdmin"><i class="bx bx-edit-alt bx-xs"></i> 
     Edit
 </button>
 

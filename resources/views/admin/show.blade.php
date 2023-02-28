@@ -89,12 +89,12 @@
                     </div>
 
                     <div class="card-footer d-flex gap-3">
-                        <a class="btn btn-secondary" href="/admin" role="button">Back</a>
+                        <a class="btn btn-secondary" href="/admin" role="button"><i class="bx bx-arrow-back bx-xs"></i> Back</a>
                         @include('admin.edit')
                         <form action="/admin/{{ $user->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i> Delete</button>
                         </form>
                     </div>
                 </form>

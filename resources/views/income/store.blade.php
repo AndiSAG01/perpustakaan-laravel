@@ -22,7 +22,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <select class="form-select" name="transaction_id" required>
-                                        <option value="{{$pay->id}}" selected>{{ $pay->user->name }}</option>
+                                        <option value="{{ $pay->id }}" selected>{{ $pay->user->name }}</option>
                                     </select>
                                 </div>
                                 @error('transaction_id')
@@ -35,9 +35,10 @@
                                 Pembayaran</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    
+
                                     <input type="date" class="form-control" id="basic-icon-default-date"
-                                        name="date" value="{{ carbon\carbon::now()->format('Y-m-d') ?? old('date') }}">
+                                        name="date"
+                                        value="{{ carbon\carbon::now()->format('Y-m-d') ?? old('date') }}">
                                 </div>
                                 @error('date')
                                     <span class="text-danger">{{ $message }}</span>
@@ -87,11 +88,11 @@
                             <td>{{ $item->date }}</td>
                             <td>{{ $item->description }}</td>
                             <td class="d-flex gap-1"><a href="/income/{{ $item->id }}/edit"
-                                    class="btn btn-warning">Edit</a>
+                                    class="btn btn-warning"><i class="bx bx-edit-alt bx-xs"></i>Edit</a>
                                 <form action="/income/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Hapus</button>
+                                    <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>
