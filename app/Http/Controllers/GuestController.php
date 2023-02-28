@@ -64,7 +64,7 @@ class GuestController extends Controller
     {
 
         return view('guest.find', [
-            'book' => Book::where('title','like',"%".request('find')."%")->get()
+            'book' => Book::where('title','like',"%".request('find')."%")->orwhere('isbn','like',"%".request('find')."%")->orwhere('author','like',"%".request('find')."%")->orwhere('publisher','like',"%".request('find')."%")->orwhere('publicationYear','like',"%".request('find')."%")->get()
         ]); 
     }
 
