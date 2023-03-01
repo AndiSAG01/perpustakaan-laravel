@@ -16,8 +16,8 @@ class CreateIncomesTable extends Migration
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->constrained('transactions')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('date');
-            $table->string('description');
+            $table->date('date');
+            $table->string('description', 100);
             $table->timestamps();
         });
     }

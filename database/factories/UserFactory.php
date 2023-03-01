@@ -19,6 +19,7 @@ class UserFactory extends Factory
         $this->faker->locale('id_ID');
         $startDate = '-10 years';
         $endDate = '-5 years';
+        $array = [1, 2, 3, 4, 5];
             return [
             'noId' => $this->faker->randomNumber(8, true),
             'name' => $this->faker->name(),
@@ -31,7 +32,7 @@ class UserFactory extends Factory
             'birthday' => $this->faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d'),
             'gender' => rand(0, 1),
             'address' => $this->faker->streetAddress(),
-            'telp' => $this->faker->phoneNumber()
+            'telp' => 123456789
         ];
     }
 

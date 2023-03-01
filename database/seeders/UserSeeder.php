@@ -6,6 +6,7 @@ use App\models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class UserSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
                 'birthday' => now(),
                 'gender' => 1,
                 'address' => 'Jln. Testing',
-                'telp' => '08978301766',
+                'telp' => Arr::random([1,2,3]),
             ],
             [
                 'noId' => '1234567897',
@@ -39,7 +40,7 @@ class UserSeeder extends Seeder
                 'birthday' => now(),
                 'gender' => 1,
                 'address' => 'Jln. user',
-                'telp' => '08978301766',
+                'telp' => Arr::random([1,2,3]),
             ]
         ];
         User::insert($data);

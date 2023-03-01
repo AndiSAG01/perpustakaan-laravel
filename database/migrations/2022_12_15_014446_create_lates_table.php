@@ -15,7 +15,7 @@ class CreateLatesTable extends Migration
     {
         Schema::create('lates', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->string('body', 5);
             $table->timestamps();
         });
     }

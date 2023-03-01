@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->date('submission')->nullable();
             $table->date('entry')->nullable();
             $table->date('return')->nullable();
-            $table->string('lateDay')->nullable();
+            $table->integer('lateDay')->nullable();
             $table->string('description');
             $table->boolean('status');
             $table->timestamps();
