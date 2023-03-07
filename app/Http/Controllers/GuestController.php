@@ -27,7 +27,6 @@ class GuestController extends Controller
         
         
         return view('guest.index', [
-            'get' => $transaction,
             'user' => User::all(),
             'guest' => Guest::all(),
         ]);
