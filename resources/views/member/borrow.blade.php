@@ -28,8 +28,8 @@
                             <label for="book_id" class="form-label">judul buku</label>
                             <select class="form-select form-select" name="book_id" id="book_id">
                                 <option selected disabled>Select one</option>
-                                @foreach ($books as $key)
-                                    <option value="{{ $key->id }}">{{ $key->title }}</option>
+                                @foreach ($books as $item)
+                                <option value="{{ $item->id }}" @if($item->stock == 0) disabled class="text-danger" @endif>{{ $item->title }} {{ 'Stok : '. $item->stock }}</option>
                                 @endforeach
                             </select>
                             @error('book_id')

@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             [
                 'noId' => '1234567890',
                 'name' => 'testing',
+                'photo' => 'https://res.cloudinary.com/dvi5po6y3/image/upload/v1678294350/book/icna5mprdvocuqrizzim.jpg',
                 'email' => 'testing@testing.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => bcrypt('testing'),
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
             [
                 'noId' => '1234567897',
                 'name' => 'user',
+                'photo' => 'https://res.cloudinary.com/dvi5po6y3/image/upload/v1678294350/book/icna5mprdvocuqrizzim.jpg',
                 'email' => 'user@user.com',
                 'email_verified_at' => null,
                 'password' => bcrypt('password'),

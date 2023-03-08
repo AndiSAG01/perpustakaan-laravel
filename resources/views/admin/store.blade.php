@@ -7,10 +7,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center fw-bold text-primary">Tambah administrator</h5>
+                <p class="modal-title p-3 rounded alert-warning">
+                    <strong>Peringatan!!!</strong>  Pastikan data yang diinputkan lengkap dan tidak ada informasi yang terlewatkan. Hal ini termasuk informasi seperti nama, email, password dan lain sebagainya.
+                </p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <hr>
             <form action="/admin" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">

@@ -23,6 +23,8 @@ class UserFactory extends Factory
             return [
             'noId' => $this->faker->randomNumber(8, true),
             'name' => $this->faker->name(),
+            'publicId' => $this->faker->randomNumber(), 
+            'photo' => $this->faker->imageUrl(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => Carbon::now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

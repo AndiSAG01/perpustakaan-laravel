@@ -1,112 +1,138 @@
 <x-app>
-    <div class="col-xxl">
-        <div class="card">
-            <div class="card-header align-items-center justify-content-between">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block">
-                    <strong>{{ $message }}</strong>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="user-profile-header-banner overflow-hidden">
+                    <img src="https://source.unsplash.com/random/1000x200?sig=1" alt="Banner image" class="rounded-top">
                 </div>
-            @elseif ($errors->all())
-                <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
-            @endif
-                <h3 class="mb-0 text-center">Detail Buku</h3>
-            </div>
-            {{-- <form action="/book/{{$book->id}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT') --}}
-                <div class="card-body">
-                    <div class="card-body">
-                        <div class="d-flex align-items-start gap-4">
-                            <img src="{{ $book->image ?? url('https://api.dicebear.com/5.x/adventurer/svg?seed=Felix') }}"
-                                class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-                            <div class="button-wrapper">
-                                <a href="{{ $book->image }}" class="btn btn-outline-primary btn-sm">Lihat</a>
-                            </div>
-                        </div>
+                <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4 ">
+                    <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                        <img src="{{ $book->image }}" height="130" width="130" alt="user image"
+                            class="d-block ms-0 ms-sm-4 rounded user-profile-img">
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">ISBN</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="isbn" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->isbn }}" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Judul Buku</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="title" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->title }}" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kategori Buku</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <select disabled id="defaultSelect" class="form-select">
-                                    <option value="">{{ $book->category->name }}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Penulis</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="author" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->author }}" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Penerbit</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="publisher" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->publisher }}" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tahun Terbit</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="publicationYear" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->publicationYear }}" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">stok</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="stock" class="form-control"
-                                    id="basic-icon-default-fullname" value="{{ $book->stock }}" readonly>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="flex-grow-1 mt-3 mt-sm-5">
+                        <div
+                            class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+                            <div class="user-profile-info">
+                                <h4>{{ $book->title }}</h4>
+                                <ul
+                                    class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                                    <li class="list-inline-item fw-semibold">
+                                        <i class='bx bx-food-menu'></i>{{ $book->category->name }}
+                                    </li>
+                                    <li class="list-inline-item fw-semibold">
+                                        <i class='bx bx-bookmark'></i> {{ $book->isbn }}
+                                    </li>
+                                    <li class="list-inline-item fw-semibold">
+                                        <i class='bx bx-bookmark'></i>
+                                        {{ \App\Models\Transaction::where([['book_id', $book->id], ['status', 1]])->count() }}
+                                    </li>
 
-                    <div class="card-footer d-flex gap-3">
-                        <a href="/book" class="btn btn-secondary"><i class="bx bx-arrow-back bx-xs"></i> Back</a>
-                        @include('book.edit')
-                        <form action="/book/{{ $book->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i> Delete</button>
-                        </form>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-            {{-- </form> --}}
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    <script type="text/javascript">
-        setTimeout(function() {
 
-            // Closing the alert
-            $('.alert').alert('close');
-        }, 3000);
-    </script>
+    {{--  --}}
+    <div class="row">
+        <div class="col-xl-6 col-lg-5 col-md-5">
+            <!-- About User -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <small class="text-muted text-uppercase">About</small>
+                    <ul class="list-unstyled mb-4 mt-3">
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
+                                class="fw-semibold mx-2">Judul Buku:</span> <span>{{ $book->title }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
+                                class="fw-semibold mx-2">ISBN:</span> <span>{{ $book->isbn }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span
+                                class="fw-semibold mx-2">Penulis:</span> <span>{{ $book->author }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span
+                                class="fw-semibold mx-2">Penerbit:</span> <span>{{ $book->publisher }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
+                                class="fw-semibold mx-2">Tahun terbit:</span> <span>{{ $book->publicationYear }}</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
+                                class="fw-semibold mx-2">Asal:</span> <span>{{ $book->publicationYear }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
+                                class="fw-semibold mx-2">Stok:</span> <span>{{ $book->stock }}</span></li>
+                    </ul>
+                    <small class="text-muted text-uppercase">Overview</small>
+                    <ul class="list-unstyled mb-4 mt-3">
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span
+                                class="fw-semibold mx-2">Permintaan:</span>
+                            <span>{{ \App\Models\Transaction::where([['book_id', $book->id], ['status', 2]])->count() }}</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span
+                                class="fw-semibold mx-2">Pinjam:</span>
+                            <span>{{ \App\Models\Transaction::where([['book_id', $book->id], ['status', 0]])->count() }}</span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span
+                                class="fw-semibold mx-2">Kembalikan:</span>
+                            <span>{{ \App\Models\Transaction::where([['book_id', $book->id], ['status', 1]])->count() }}</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-7 col-md-7">
+            <div class="card mb-4 overflow-auto" style="height: 470px">
+                <div class="col-lg-6 p-4">
+                    <small class="text-light fw-semibold">TIMELINE</small>
+                    @php
+                        $transactionBook = \App\Models\Transaction::where('book_id', $book->id)
+                            ->orderby('created_at', 'asc')
+                            ->get();
+                    @endphp
+                    <ul class="d-inline">
+                        <ul>
+                            @foreach ($transactionBook as $item)
+                                <li class="timeline-item timeline-item-transparent mb-4">
+                                    <div class="timeline-event">
+                                        <div class="timeline-header mb-1">
+                                            <h6 class="mb-0">{{ $item->user->name }}</h6>
+                                        </div>
+                                        @if ($item->status == 0)
+                                            <strong class="mb-2 text-primary">Dipinjam <small
+                                                    class="text-muted">{{ $item->created_at }}</small></strong>
+                                        @elseif ($item->status == 1)
+                                            <strong class="mb-2 text-success">Dikembalikan <small
+                                                    class="text-muted">{{ $item->created_at }}</small></strong>
+                                        @elseif ($item->status == 2)
+                                            <strong class="mb-2 text-warning">Permintaan pinjam <small
+                                                    class="text-muted">{{ $item->created_at }}</small></strong>
+                                        @elseif ($item->status == 3)
+                                            <strong class="mb-2 text-danger">Permintaan ditolak <small
+                                                    class="text-muted">{{ $item->created_at }}</small></strong>
+                                        @endif
+                                        <div class="d-flex flex-wrap">
+                                            <div>
+                                                <h6 class="mb-0">{{ $item->description }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex gap-4 justify-content-start">
+                <a class="btn btn-secondary" href="/book" role="button"><i class="bx bx-arrow-back bx-xs"></i>
+                    Kembali</a>
+                @include('book.edit')
+                <form action="/book/{{ $book->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i>
+                        Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </x-app>

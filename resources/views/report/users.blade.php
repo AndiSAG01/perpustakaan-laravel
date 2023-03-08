@@ -31,11 +31,13 @@
                                 Perempuan
                             @endif</td>
                             <td>
-                                @if ($item->isAdmin == true)
-                                    Admin
-                                @else
-                                    Anggota
-                                @endif
+                                @if ($item->status == 0)
+                                            Siswa/i
+                                        @elseif ($item->status == 1)
+                                            Guru
+                                        @elseif ($item->status == 2)
+                                            Administrator
+                                        @endif
                             </td>
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->telp }}</td>  

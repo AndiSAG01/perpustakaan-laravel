@@ -16,9 +16,9 @@ class CreateLettersTable extends Migration
         Schema::create('letters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('class', 25);
-            $table->string('leaderName', 25);
-            $table->string('position', 25);
+            $table->string('class', 100);
+            $table->string('leaderName', 100);
+            $table->string('position', 100);
             $table->integer('noId');
             $table->date('date');
             $table->timestamps();

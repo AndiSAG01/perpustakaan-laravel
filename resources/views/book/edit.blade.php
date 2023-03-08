@@ -97,8 +97,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="bx bx-arrow-back bx-xs"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save' ></i> Simpan</button>
                 </div>
             </form>
         </div>

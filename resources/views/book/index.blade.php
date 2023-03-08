@@ -1,39 +1,29 @@
 <x-app>
-    <style>
-        #morph {
-            /* From https://css.glass */
-            background: rgba(89, 99, 123, 0.24);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(8.7px);
-            -webkit-backdrop-filter: blur(8.7px);
-            border: 1px solid rgba(89, 99, 123, 0.88);
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-    </style>
-    <div class="card-header">
-        <div class="container" id="morph">
-            <h5 class="fw-bold text-center">Kategori Buku</h5>
-            <div class="col d-flex">
-                {!! $chart->container() !!}
-            </div>
+    <div class="card bg-white p-3 mb-3 rounded-3 justify-content-center">
+        <h5 class="fw-bold text-center">KATEGORI BUKU</h5>
+        <div class="d-flex overflow-hidden ">
+            {!! $chart->container() !!}
+        </div>
+        <div class="col">
             <a class="btn btn-primary mt-3" href="/category">Selengkapnya...</a>
         </div>
     </div>
-    <div class="card-body">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-primary alert-block">
-                <strong>{{ $message }}</strong>
-            </div>
-        @elseif ($errors->all())
-            <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
-        @endif
-        <div class="card-header">
-            <h5 class="fw-bold text-center">Data Buku</h5>
-            @include('book.store')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-primary alert-block">
+            <strong>{{ $message }}</strong>
         </div>
-        <div class="table-responsive text-nowrap">
+    @elseif ($errors->all())
+        <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
+    @endif
+    <div class="card p-3 mb-3 fw-bold">
+        <h3 class="fw-bold">BUKU</h3>
+        Anda sedang mengakses halaman buku. Mohon pastikan bahwa tindakan yang Anda lakukan sesuai dengan
+        aturan dan kebijakan perpustakaan.
+    </div>
+    @include('book.store')
+
+    <div class="card my-3">
+        <div class="card-body table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>
                     <tr>
@@ -52,7 +42,8 @@
                             <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->stock }} exampler</td>
                             <td class="d-flex gap-1">
-                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class='bx bx-show-alt'></i> Lihat</a>
+                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i
+                                        class='bx bx-show-alt'></i> Lihat</a>
                             </td>
                         </tr>
                     @endforeach

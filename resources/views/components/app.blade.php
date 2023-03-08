@@ -201,9 +201,7 @@ document.getElementById('logout-form').submit();">
                     <div class="container-fluid py-3">
                         <div class="row justify-content-center">
                             <div class="col">
-                                <div class="card">
-                                    {{ $slot }}
-                                </div>
+                                {{ $slot }}
                             </div>
                         </div>
                     </div>
