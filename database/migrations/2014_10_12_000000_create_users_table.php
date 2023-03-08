@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 100);
             $table->boolean('isAdmin');
-            $table->boolean('status')->nullable();
+            $table->boolean('status');
             $table->date('birthday');
             $table->boolean('gender');
             $table->string('address', 100);

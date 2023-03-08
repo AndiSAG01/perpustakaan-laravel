@@ -121,15 +121,29 @@ class MemberController extends Controller
             'submission' => 'required',
             'late_id' => 'required',
         ]);
-        Transaction::create([
-            'transactionCode' => 'TRX'.Str::random(5),
-            'book_id'=> $request->book_id,
-            'user_id'=> Auth::user()->id,
-            'late_id'=> $request->late_id,
-            'submission'=> $request->submission,
-            'description' => 'Menunggu Konfirmasi',
-            'status'=> 2,
-        ]);
+
+        $user = Auth::user();
+        $status = $user->status;
+        $count = transaction::where([
+            ['user_id', $user->id],
+            ['status', false],
+        ])->count();
+        $maxtransaction = $status == 1 ? 5 : 2 ;
+
+
+        if ( $count >= $maxtransaction ) {
+            return back()->with('fail', 'Peminjaman melebihi batas yang telah ditentukan 😀, lakukan pengembalian terlebih daluhu');
+        } else {
+            Transaction::create([
+                'transactionCode' => 'TRX'.Str::random(5),
+                'book_id'=> $request->book_id,
+                'user_id'=> Auth::user()->id,
+                'late_id'=> $request->late_id,
+                'submission'=> $request->submission,
+                'description' => 'Menunggu Konfirmasi',
+                'status'=> 2,
+            ]);
+        }
 
         return back()->with('success', 'Pengajuan Sukses, Silahkan tunggu konfirmasi dari administrator 😀');
     }

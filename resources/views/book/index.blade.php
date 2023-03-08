@@ -52,8 +52,7 @@
                             <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->stock }} exampler</td>
                             <td class="d-flex gap-1">
-                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i
-                                        class="bx bx-radio-circle bx-burst-hover bx-xs"></i> Lihat</a>
+                                <a href="/book/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class='bx bx-show-alt'></i> Lihat</a>
                             </td>
                         </tr>
                     @endforeach

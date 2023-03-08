@@ -6,7 +6,7 @@
                 <strong>{{ $message }}</strong>
             </div>
         @elseif ($errors->all())
-            <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
+            <div class="alert alert-danger fw-bold" role="alert">Data tidak valid 😣</div>
         @endif
         @include('user.store')
         <h5 class="card-header text-center">Data Transaksi </h5>
@@ -59,7 +59,7 @@
                                     </td>
         
                                     <td class="d-flex gap-1">
-                                        <a href="/user/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
+                                        <a href="/user/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class='bx bx-show-alt'></i> Lihat</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -100,7 +100,7 @@
                                     </td>
         
                                     <td class="d-flex gap-1">
-                                        <a href="/user/{{ $item->id }}/show" class="btn btn-info btn-sm">Show</a>
+                                        <a href="/user/{{ $item->id }}/show" class="btn btn-info btn-sm"><i class='bx bx-show-alt'></i> Lihat</a>
                                     </td>
                                 </tr>
                                 @endforeach

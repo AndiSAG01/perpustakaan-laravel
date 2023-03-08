@@ -41,9 +41,19 @@ class TransactionController extends Controller
         $now = Carbon::now();
         $lateday = $formDate->diffInDays($now);
 
+        $status = User::whereid($request->user_id)->first()->status;
+        $count = transaction::where([
+            ['user_id', $request->user_id],
+            ['status', false],
+        ])->count();
+        $maxtransaction = $status == 1 ? 5 : 2 ;
 
-        if ($request->return > $now) {
-            Transaction::create([
+
+        if ( $count >= $maxtransaction ) {
+            return back()->with('fail', 'Peminjaman melebihi batas yang telah ditentukan 😀');
+        } else {
+            if ($request->return > $now) {
+                Transaction::create([
                 'transactionCode' => 'TRX'.Str::random(5),
                 'book_id'=> $request->book_id,
                 'user_id'=> $request->user_id,
@@ -55,19 +65,21 @@ class TransactionController extends Controller
                 'status'=> false,
                 'book' => Book::find($request->book_id)->borrow(),
             ]);
-        } else {
-            Transaction::create([
-                'transactionCode' => 'TRX'.Str::random(5),
-                'book_id'=> $request->book_id,
-                'user_id'=> $request->user_id,
-                'late_id'=> $late_id,
-                'entry'=> $request->entry,
-                'return'=> $request->return,
-                'lateDay' => $lateday,
-                'description' => 'Total Denda Rp. ' . $lateday * $request->late_id,
-                'status'=> false,
-                'book' => Book::find($request->book_id)->borrow(),
-            ]);
+            } else {
+                Transaction::create([
+                    'transactionCode' => 'TRX'.Str::random(5),
+                    'book_id'=> $request->book_id,
+                    'user_id'=> $request->user_id,
+                    'late_id'=> $late_id,
+                    'entry'=> $request->entry,
+                    'return'=> $request->return,
+                    'lateDay' => $lateday,
+                    'description' => 'Total Denda Rp. ' . $lateday * $request->late_id,
+                    'status'=> false,
+                    'book' => Book::find($request->book_id)->borrow(),
+                ]);
+            }
+            
         }
 
         return back()->with('success', 'Tambah Data Sukses 😀');
@@ -160,7 +172,7 @@ class TransactionController extends Controller
                 'late_id'=> $request->late_id,
                 'entry'=> $request->entry,
                 'return'=> $request->return,
-                'lateDay' => '',
+                'lateDay' => 0,
                 'description' => 'Masih Dipinjam',
                 'status'=> false,
             ]);

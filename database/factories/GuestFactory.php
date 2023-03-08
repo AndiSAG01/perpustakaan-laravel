@@ -14,16 +14,14 @@ class GuestFactory extends Factory
     public function definition()
     {
         $this->faker->locale('id_ID');
-        $startDate = now()->subYear(1);
-        $endDate = now();
         $faker = $this->faker;
         return [
             'name' => $faker->name(),
             'from' => $faker->country(),
             'description' => $faker->word(),
-            'date' => $faker->date(),
-            'updated_at' => $faker->date(),
-            'created_at' => $faker->date(),
+            'date' => now()->subMonth(1),
+            'updated_at' => now()->subMonth(1),
+            'created_at' => now()->subMonth(1),
         ];
     }
 }

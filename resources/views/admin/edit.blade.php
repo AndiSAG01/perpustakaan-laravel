@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateAdmin"><i class="bx bx-edit-alt bx-xs"></i> 
-    Edit
+    Ubah
 </button>
 
 <!-- Modal -->
@@ -102,8 +102,8 @@
                     <input type="hidden" name="status" value="2">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class='bx bx-arrow-back' ></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save' ></i> Simpan</button>
                 </div>
             </form>
         </div>

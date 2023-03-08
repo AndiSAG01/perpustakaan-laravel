@@ -1,6 +1,7 @@
 <div class="mt-3">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storetransaction">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storetransaction"
+    @if (App\Models\Transaction::where('status', 2)->count() >= 2)disabled @endif >
         Pengajuan peminjaman buku
     </button>
 

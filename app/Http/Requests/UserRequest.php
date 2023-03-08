@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-        'noId' => 'required|integer|min:8|unique:users,noId',
+        'noId' => 'required|integer|digits_between:8,13|unique:users,noId',
         'name' => 'required|string|min:3',
         'email' => 'required|email',
         'password'=> 'min:5',
@@ -32,7 +32,8 @@ class UserRequest extends FormRequest
         'birthday' => 'required',
         'gender'  => 'required|integer',
         'address' => 'required|min:5',
-        'telp' => 'required|string',
+        'telp' => 'required|string|digits_between:11,12',
+        'status' => 'required|integer',
         ];
     }
 }

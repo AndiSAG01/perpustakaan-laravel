@@ -1,0 +1,6 @@
+version: "2"
+authtoken: 2MhCXc2NxkgTcLx9pJHvsoIvcuC_5FKacRHv1yFCYuYXJQKNd
+tunnels:
+  demoweb:
+    proto: http
+    adde: 8000

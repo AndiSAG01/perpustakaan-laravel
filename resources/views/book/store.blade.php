@@ -1,7 +1,7 @@
 <div class="mt-3">
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storebook">
-    Tambah Buku
+    <i class='bx bx-folder-plus'></i> Tambah Buku
 </button>
 
 <!-- Modal -->
@@ -9,9 +9,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Tambah Buku</h5>
+                <h5 class="modal-title fw-bolder text-primary" id="exampleModalLabel1">Tambah Buku</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+            </div><hr>
             <form action="/book" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -43,7 +43,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">Kategori Buku</label>
                         <select id="select" class="form-select form-select" name="category_id">
-                            <option selected disabled>Select one</option>
+                            <option selected disabled>Pilih satu</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -85,8 +85,8 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                        data-bs-dismiss="modal"><i class="bx bx-arrow-back bx-xs"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save' ></i> Simpan</button>
                 </div>
             </form>
         </div>

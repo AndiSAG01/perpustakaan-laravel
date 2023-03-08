@@ -65,6 +65,7 @@ class RegisterController extends Controller
             'gender'  => ['required','integer'],
             'address' => ['required','min:5'],
             'telp' => ['required','string','min:10'],
+            'status' => ['required','integer'],
         ]);
     }
 
@@ -86,7 +87,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'address' => $data['address'],
             'telp' => $data['telp'],
-
+            'status' => $data['status'],
         ]);
     }
 }

@@ -27,8 +27,9 @@ class UserSeeder extends Seeder
                 'isAdmin' => true,
                 'birthday' => now(),
                 'gender' => 1,
+                'status' => 2,
                 'address' => 'Jln. Testing',
-                'telp' => Arr::random([1,2,3]),
+                'telp' => random_int(11, 12),
             ],
             [
                 'noId' => '1234567897',
@@ -39,8 +40,9 @@ class UserSeeder extends Seeder
                 'isAdmin' => false,
                 'birthday' => now(),
                 'gender' => 1,
+                'status' => 0,
                 'address' => 'Jln. user',
-                'telp' => Arr::random([1,2,3]),
+                'telp' => random_int(11, 12),
             ]
         ];
         User::insert($data);

@@ -1,6 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeAdmin">
-    Tambah administrator
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeAdmin"><i class='bx bx-user-plus'></i> Tambah administrator
 </button>
 
 <!-- Modal -->
@@ -58,7 +57,7 @@
                     </div>
                     <div class="col mb-3">
                         <label for="gender" class="form-label">Jenis Kelamin</label> <br>
-                        <div class="form-check form-check-inline mt-3">
+                        <div class="form-check form-check-inline ">
                             <input class="form-check-input" type="radio" name="gender"
                                 id="Laki-Laki" value="0">
                             <label class="form-check-label" for="Laki-Laki">Laki-Laki</label>
@@ -67,7 +66,10 @@
                             <input class="form-check-input" type="radio" name="gender" id="Perempuan"
                             value="1">
                             <label class="form-check-label" for="Perempuan">Perempuan</label>
-                        </div>
+                        </div><br>
+                        @error('gender')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="address" class="form-label">alamat</label>
@@ -95,8 +97,8 @@
                     <input type="hidden" name="status" value="2">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class='bx bx-arrow-back' ></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save' ></i> Simpan</button>
                 </div>
             </form>
         </div>

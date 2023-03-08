@@ -6,16 +6,19 @@
                 <!-- Account -->
                 <div class="card-body">
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <img src="..https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/{{ rand(1, 999) }}"
+                        <img src="{{ $user->photo ?? url('https://api.dicebear.com/5.x/adventurer/svg?seed=Felix/'). rand(0,4) }}"
                             alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
                         <div class="button-wrapper">
-                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                <span class="d-none d-sm-block">Upload new photo</span>
-                                <i class="bx bx-upload d-block d-sm-none"></i>
-                                <input type="file" id="upload" class="account-file-input" hidden=""
-                                    accept="image/png, image/jpeg">
+                            @if (!$user->photo)
+                            <p>Tidak mengunggah photo</p>
+                            @else
+                            <label for="upload" class="btn btn-outline-primary me-2 mb-4" tabindex="0">
+                                   <a href="{{ $user->photo }}" class="d-none d-sm-block fw-bold">Lihat</a>
+                                   <i class="bx bx-upload d-block d-sm-none"></i>
+                                   <input type="file" id="upload" class="account-file-input" hidden=""
+                                       accept="image/png, image/jpeg">
+                               @endif
                             </label>
-                            <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                         </div>
                     </div>
                 </div>
@@ -48,6 +51,20 @@
                                     <input type="text" name="email" class="form-control"
                                         id="basic-icon-default-email" value="{{ $user->email }}" readonly>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-status">status</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" name="status" class="form-control"
+                                        id="basic-icon-default-status"
+                                        value="@if ($user->status == 0) Siswa @elseif ($user->status == 1)Guru @elseif ($user->status == 2)Petugas perpustakaan @endif
+                                         "
+                                        readonly>
+                                </div>
+                                <small class="text-danger">Status tidak dapat diubah lagi, jika ingin mengubah lakukan
+                                    pendaftaran ulang</small>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -93,13 +110,13 @@
                         </div>
 
                         <div class="card-footer d-flex gap-3">
-                            <a href="/cetak/{{ $user->id }}" class="btn btn-primary">Cetak Kartu</a>
-                            <a class="btn btn-secondary" href="/user" role="button">Back</a>
+                            <a href="/cetak/{{ $user->id }}" class="btn btn-primary"><i class='bx bxs-id-card' ></i> Cetak Kartu</a>
+                            <a class="btn btn-secondary" href="/user" role="button"><i class="bx bx-arrow-back bx-xs"></i> Kembali</a>
                             @include('user.edit')
                             <form action="/user/{{ $user->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i> Hapus</button>
                             </form>
                         </div>
                     </form>

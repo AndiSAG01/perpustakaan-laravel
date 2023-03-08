@@ -1,7 +1,7 @@
 // Config cloundinary
 # CLOUDINARY_URL=cloudinary://474152683611369:wnHkZdIcVU3_QWW4jaAGGzWILPs@dvi5po6y3
 # CLOUDINARY_UPLOAD_PRESET=https://api.cloudinary.com/v1_1/dvi5po6y3/image/upload
-# CLOUDINARY_NOTIFICATION_URL=
+# zCLOUDINARY_NOTIFICATION_URL=
 
 // config mailTrap
 MAIL_MAILER=smtp

@@ -44,6 +44,19 @@
                 </span>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label> <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="status"
+                    id="siswa" value="0">
+                <label class="form-check-label" for="siswa">Siswa/i</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="status" id="guru"
+                value="1">
+                <label class="form-check-label" for="guru">Guru</label>
+            </div>
+        </div>
 
         <div class="mb-3">
             <label for="birthday" class="form-label">tanggal lahir</label>
@@ -60,7 +73,7 @@
 
         <div class="mb-3">
             <label for="gender" class="form-label">Jenis Kelamin</label> <br>
-            <div class="form-check form-check-inline mt-3">
+            <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="Laki-Laki" value="0">
                 <label class="form-check-label" for="Laki-Laki">Laki-Laki</label>
             </div>

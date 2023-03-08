@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\AdminRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +22,7 @@ class AdminController extends Controller
          ]);
      }
 
-     public function store(UserRequest $request)
+     public function store(AdminRequest $request)
     {
         if($request->hasFile('photo')){
             $photo = $request->file('photo');

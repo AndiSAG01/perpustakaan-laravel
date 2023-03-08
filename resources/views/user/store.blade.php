@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeUser">
-    Tambah anggota
+    <i class='bx bx-user-plus'></i> Tambah anggota
 </button>
 
 <!-- Modal -->
@@ -17,16 +17,17 @@
                 <div class="modal-body">
                     <div class="col mb-3">
                         <label for="status" class="form-label">Status</label> <br>
-                        <div class="form-check form-check-inline mt-3">
-                            <input class="form-check-input" type="radio" name="status"
-                                id="siswa" value="0">
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" name="status" id="siswa" value="0">
                             <label class="form-check-label" for="siswa">Siswa/i</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="guru"
-                            value="1">
+                            <input class="form-check-input" type="radio" name="status" id="guru" value="1">
                             <label class="form-check-label" for="guru">Guru</label>
-                        </div>
+                        </div><br>
+                        @error('status')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="noId" class="form-label">no. identitas</label>
@@ -40,7 +41,7 @@
                         <label for="photo" class="form-label">Foto profile</label>
                         <input type="file" value="{{ old('photo') }}" id="photo" class="form-control"
                             name="photo" placeholder="Masukkan foto profile ">
-                            <small class="text-danger">Optional, kosongkan jika tidak ada.</small>
+                        <small class="text-danger">Optional, kosongkan jika tidak ada.</small>
                         @error('photo')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -71,27 +72,32 @@
                     </div>
                     <div class="col mb-3">
                         <label for="gender" class="form-label">Jenis Kelamin</label> <br>
-                        <div class="form-check form-check-inline mt-3">
-                            <input class="form-check-input" type="radio" name="gender"
-                                id="Laki-Laki" value="0">
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input" type="radio" name="gender" id="Laki-Laki"
+                                value="0">
                             <label class="form-check-label" for="Laki-Laki">Laki-Laki</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="gender" id="Perempuan"
-                            value="1">
+                                value="1">
                             <label class="form-check-label" for="Perempuan">Perempuan</label>
-                        </div>
+                        </div><br>
+                        @error('gender')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="address" class="form-label">alamat</label>
-                        <input type="text" id="address" class="form-control" value="{{ old('address') }}" name="address" placeholder="Masukkan alamat lengkap">
+                        <input type="text" id="address" class="form-control" value="{{ old('address') }}"
+                            name="address" placeholder="Masukkan alamat lengkap">
                         @error('address')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="telp" class="form-label">telp</label>
-                        <input type="number" id="telp" class="form-control" value="{{ old('telp') }}" name="telp" placeholder="Masukkan No. telp aktif atau wa">
+                        <input type="number" id="telp" class="form-control" value="{{ old('telp') }}"
+                            name="telp" placeholder="Masukkan No. telp aktif atau wa">
                         @error('telp')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -107,8 +113,8 @@
                     <input type="hidden" name="isAdmin" value="0">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class='bx bx-arrow-back' ></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save' ></i> Simpan</button>
                 </div>
             </form>
         </div>
