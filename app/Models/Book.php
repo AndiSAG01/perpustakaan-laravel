@@ -16,6 +16,8 @@ class Book extends Model
         'publicId',
         'category_id',
         'isbn',
+        'source',
+        'by',
         'title',
         'author',
         'publisher',
@@ -34,6 +36,11 @@ class Book extends Model
     }
 
     public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function source()
     {
         return $this->belongsTo(Category::class);
     }

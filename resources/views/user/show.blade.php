@@ -50,14 +50,14 @@
                 <div class="card-body">
                     <small class="text-muted text-uppercase">About</small>
                     <ul class="list-unstyled mb-4 mt-3">
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
-                                class="fw-semibold mx-2">Nama Lengkap:</span> <span>{{ $user->name }}</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
-                                class="fw-semibold mx-2">No Identitas:</span> <span>{{ $user->noId }}</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span
-                                class="fw-semibold mx-2">Status:</span> <span>Aktif</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-star"></i><span
-                                class="fw-semibold mx-2">Peran:</span> <span>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><small
+                                class="fw-semibold mx-2">Nama Lengkap:</small> <small>{{ $user->name }}</small></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><small
+                                class="fw-semibold mx-2">No Identitas:</small> <small>{{ $user->noId }}</small></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><small
+                                class="fw-semibold mx-2">Status:</small> <small>Aktif</small></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-star"></i><small
+                                class="fw-semibold mx-2">Peran:</small> <small>
                                 @if ($user->status == 0)
                                     Siswa/i
                                 @elseif ($user->status == 1)
@@ -65,27 +65,27 @@
                                 @elseif ($user->status == 2)
                                     useristrator
                                 @endif
-                            </span>
+                            </small>
                         </li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span
-                                class="fw-semibold mx-2">Jenis Kelamin:</span> <span>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><small
+                                class="fw-semibold mx-2">Jenis Kelamin:</small> <small>
                                 @if ($user->gender == '0')
                                     Laki-laki
                                 @else
                                     Perempuan
                                 @endif
-                            </span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span
-                                class="fw-semibold mx-2">Tanggal lahir:</span> <span>{{ $user->birthday }}</span></li>
+                            </small></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><small
+                                class="fw-semibold mx-2">Tanggal lahir:</small> <small>{{ $user->birthday }}</small></li>
                     </ul>
                     <small class="text-muted text-uppercase">Contacts</small>
                     <ul class="list-unstyled mb-4 mt-3">
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span
-                                class="fw-semibold mx-2">Telp:</span> <span> <a
-                                    href="{{ url('https://api.whatsapp.com/send/?phone=' . $user->telp . '&text&type=phone_number&app_absent=0') }}">{{ $user->telp }}</a></span>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><small
+                                class="fw-semibold mx-2">Telp:</small> <small> <a
+                                    href="{{ url('https://api.whatsapp.com/send/?phone=' . $user->telp . '&text&type=phone_number&app_absent=0') }}">{{ $user->telp }}</a></small>
                         </li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span
-                                class="fw-semibold mx-2">Email:</span> <span>{{ $user->email }}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><small
+                                class="fw-semibold mx-2">Email:</small> <small>{{ $user->email }}</small></li>
                     </ul>
                 </div>
             </div>
@@ -100,42 +100,42 @@
                         @endphp
                         <li class="d-flex align-items-center mb-3">
                             <i class="bx bx-transfer"></i>
-                            <span class="fw-semibold mx-2">Transaksi:</span>
+                            <small class="fw-semibold mx-2">Transaksi:</small>
                             @if ($transactionCount > 0)
-                                <span>{{ number_format($transactionCount) }}</span>
+                                <small>{{ number_format($transactionCount) }}</small>
                             @else
-                                <span>Tidak ada transaksi</span>
+                                <small>Tidak ada transaksi</small>
                             @endif
                         </li>
 
-                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-error'></i><span
-                                class="fw-semibold mx-2">Pengajuan:</span>
-                            <span>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 2]])->count() }}</span>
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-error'></i><small
+                                class="fw-semibold mx-2">Pengajuan:</small>
+                            <small>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 2]])->count() }}</small>
                         </li>
-                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-x'></i><span
-                                class="fw-semibold mx-2">Ditolak:</span>
-                            <span>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 3]])->count() }}</span>
-                        </li>
-
-                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-dots'></i><span
-                                class="fw-semibold mx-2">Peminjaman:</span>
-                            <span>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 0]])->count() }}</span>
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-x'></i><small
+                                class="fw-semibold mx-2">Ditolak:</small>
+                            <small>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 3]])->count() }}</small>
                         </li>
 
-                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-check'></i><span
-                                class="fw-semibold mx-2">Selesai:</span>
-                            <span>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 1]])->count() }}</span>
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-dots'></i><small
+                                class="fw-semibold mx-2">Peminjaman:</small>
+                            <small>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 0]])->count() }}</small>
+                        </li>
+
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-message-square-check'></i><small
+                                class="fw-semibold mx-2">Selesai:</small>
+                            <small>{{ \App\Models\Transaction::where([['user_id', $user->id], ['status', 1]])->count() }}</small>
                         </li>
 
 
-                        <li class="d-flex align-items-center"><i class="bx bx-user"></i><span
-                                class="fw-semibold mx-2">Keanggotaan:</span> <span>
+                        <li class="d-flex align-items-center"><i class="bx bx-user"></i><small
+                                class="fw-semibold mx-2">Keanggotaan:</small> <small>
                                 @if ($user->isAdmin == 0)
                                     Anggota
                                 @else
                                     Administrator
                                 @endif
-                            </span></li>
+                            </small></li>
                     </ul>
                 </div>
             </div>

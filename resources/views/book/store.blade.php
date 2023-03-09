@@ -9,9 +9,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bolder text-primary" id="exampleModalLabel1">Tambah Buku</h5>
+                <p class="modal-title p-3 rounded alert-warning">
+                    <strong>Peringatan!!!</strong>  Pastikan data yang diinputkan lengkap dan tidak ada informasi yang terlewatkan. Hal ini termasuk informasi seperti judul buku, ISBN dan lain sebagainya.
+                </p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div><hr>
+            </div>
             <form action="/book" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -43,11 +45,14 @@
                     <div class="mb-3">
                         <label for="" class="form-label">Kategori Buku</label>
                         <select id="select" class="form-select form-select" name="category_id">
-                            <option selected disabled>Pilih satu</option>
+                            <option value=" " selected disabled>Pilih satu</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="author" class="form-label">Penulis</label>
@@ -57,6 +62,19 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="col mb-3">
+                        <label for="author" class="form-label">Asal buku</label>
+                        <div class="input-group">
+                            <select class="form-select rounded-left" name="source" required>
+                                <option selected disabled>Pilih salah satu</option>
+                                @foreach ($source as $item)
+                                <option value="{{ $item->body}} oleh ">{{ $item->body }}</option>
+                            @endforeach
+                            </select>
+                            <input type="text" class="form-control" name="from" placeholder="Oleh..." required>
+                          </div>
+                    </div>
+                    
                     <div class="col mb-3">
                         <label for="publisher" class="form-label">Penerbit</label>
                         <input type="text" id="publisher" class="form-control" value="{{ old('publisher') }}"

@@ -7,6 +7,7 @@ use App\Models\Book;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\Source;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -36,7 +37,8 @@ class BookController extends Controller
         return view('book.index', [
             'books' => Book::orderby('updated_at', 'desc')->get(),
             'categories' => Category::get(),
-            'chart' => $chart
+            'chart' => $chart,
+            'source' => Source::get()
 
             
         ]);
@@ -56,6 +58,8 @@ class BookController extends Controller
         $book->barcode = Str::random(8);
         $book->title = $request->title;
         $book->isbn = $request->isbn;
+        $book->source = $request->source;
+        $book->by = $request->by;
         $book->category_id = $request->category_id;
         $book->author = $request->author;
         $book->publisher = $request->publisher;
@@ -71,6 +75,8 @@ class BookController extends Controller
         return view('book.show', [
             'book' => Book::where('id', $id)->first(),
             'categories' => Category::get(),
+            'source' => Source::get()
+
         ]);
     }
     public function edit($id)
@@ -85,7 +91,7 @@ class BookController extends Controller
     {   
         $request->validate([
             'title' => 'required|min:3',
-            'isbn' => 'integer|required|min:8',
+            'isbn' => 'required|digits_between:10,13|integer',
             'category_id'=> 'required|integer',
             'author' => 'string|required|min:3',
             'publisher' => 'min:3|required',
@@ -108,6 +114,8 @@ class BookController extends Controller
         }
         $book->title = $request->title;
         $book->isbn = $request->isbn;
+        $book->source = $request->source;
+        $book->by = $request->by;
         $book->category_id = $request->category_id;
         $book->author = $request->author;
         $book->publisher = $request->publisher;

@@ -8,7 +8,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Buku</h5>
+                <p class="modal-title p-3 rounded alert-warning">
+                    <strong>Peringatan!!!</strong>  Pastikan data yang diinputkan lengkap dan tidak ada informasi yang terlewatkan. Hal ini termasuk informasi seperti judul buku, ISBN dan lain sebagainya.
+                </p>                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/book/{{ $book->id }}" method="POST" enctype="multipart/form-data">
@@ -86,6 +88,19 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="col mb-3">
+                        <label for="author" class="form-label">Asal buku</label>
+                        <div class="input-group">
+                            <select class="form-select rounded-left" name="source" required>
+                                <option selected>Pilih salah satu </option>
+                                @foreach ($source as $item)
+                                <option value="{{ $item->body . ' oleh '}}">{{ $item->body }}</option>
+                            @endforeach
+                            </select>
+                            <input type="text" class="form-control" value="{{ $book->source }}" name="from" placeholder="Oleh..." required>
+                          </div>
+                    </div>
+                    
                     <div class="col mb-3">
                         <label for="stock" class="form-label">stok buku</label>
                         <input type="number" id="stock" class="form-control" value="{{ $book->stock }}"

@@ -25,7 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3',
-            'isbn' => 'integer|unique:books,isbn|required|min:8',
+            'isbn' => 'required|digits_between:10,13|integer|unique:books,isbn',
             'category_id'=> 'required|integer',
             'author' => 'string|required|min:3',
             'publisher' => 'min:3|required',

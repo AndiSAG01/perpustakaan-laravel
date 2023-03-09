@@ -21,6 +21,8 @@ class CreateBooksTable extends Migration
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('isbn');
             $table->string('title');
+            $table->foreignId('source_id')->constrained('source')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('by');
             $table->string('author', 100);
             $table->string('publisher', 100);
             $table->integer('publicationYear');
