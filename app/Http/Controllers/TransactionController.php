@@ -153,10 +153,8 @@ class TransactionController extends Controller
     public function agree(Request $request, $id)
     {
         $request->validate([
-                'late_id'=> 'required|integer',
                 'entry'=> 'required|date',
                 'return'=> 'required|date',
-                'status'=> 'required',
         ]);
 
         $return = $request->return;
@@ -169,7 +167,7 @@ class TransactionController extends Controller
         if ($request->return > $now) {
             Transaction::where('id', $id)->update([
                 'book_id'=> $book_id,
-                'late_id'=> $request->late_id,
+                'late_id'=> 1,
                 'entry'=> $request->entry,
                 'return'=> $request->return,
                 'lateDay' => 0,
@@ -180,7 +178,7 @@ class TransactionController extends Controller
         } else {
             Transaction::where('id', $id)->update([
                 'book_id'=> $book_id,
-                'late_id'=> $request->late_id,
+                'late_id'=> 1,
                 'entry'=> $request->entry,
                 'return'=> $request->return,
                 'lateDay' => $lateday,

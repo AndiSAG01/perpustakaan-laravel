@@ -91,12 +91,18 @@
                             <input type="date" name="entry" class="form-control" id="basic-icon-default-fullname"
                                 value="{{ Carbon\carbon::now()->format('Y-m-d') }}">
                         </div>
+                        @error('entry')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="col mb-3">
                         <label class="form-label" for="basic-icon-default-fullname">Tanggal Kembali</label>
                         <div class="input-group input-group-merge">
                             <input type="date" name="return" class="form-control" id="basic-icon-default-fullname">
                         </div>
+                        @error('return')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
@@ -164,29 +170,20 @@
                     </ul>
                     <small class="text-muted text-uppercase">History</small>
                     @php
-                         $pinjam = \App\Models\Transaction::where([
-                            ['user_id', $pending->user->id],
-                            ['status', 0],
-                         ])->count();
-
-                         $permintaan = \App\Models\Transaction::where([
-                            ['user_id', $pending->user->id],
-                            ['status', 2],
-                         ])->count();
-
-                         $selesai = \App\Models\Transaction::where([
-                            ['user_id', $pending->user->id],
-                            ['status', 1],
-                         ])->count();
+                        $pinjam = \App\Models\Transaction::where([['user_id', $pending->user->id], ['status', 0]])->count();
+                        
+                        $permintaan = \App\Models\Transaction::where([['user_id', $pending->user->id], ['status', 2]])->count();
+                        
+                        $selesai = \App\Models\Transaction::where([['user_id', $pending->user->id], ['status', 1]])->count();
                     @endphp
                     <ul class="list-unstyled mb-4 mt-3">
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><small
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-archive-in'></i><small
                                 class="fw-semibold mx-2">Permintaan:</small> <small>{{ $permintaan }}</small>
                         </li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><small
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-time'></i><small
                                 class="fw-semibold mx-2">Pinjam:</small> <small> {{ $pinjam }}</small>
                         </li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><small
+                        <li class="d-flex align-items-center mb-3"><i class='bx bx-calendar-check'></i><small
                                 class="fw-semibold mx-2">Selesai:</small> <small>{{ $selesai }}</small>
                         </li>
                     </ul>
@@ -206,7 +203,7 @@
                         <li class="d-flex mb-3"><i class='bx bxs-user-rectangle'></i><small
                                 class="fw-semibold mx-2">Penulis:</small> <small>{{ $pending->book->author }}</small>
                         </li>
-                        <li class="d-flex mb-3"><i class="bxs bx-flag"></i><small
+                        <li class="d-flex mb-3"><i class="bx bx-flag"></i><small
                                 class="fw-semibold mx-2">Penerbit:</small>
                             <small>{{ $pending->book->publisher }}</small>
                         </li>
@@ -241,7 +238,7 @@
             </div>
         </div>
         <div class="col-xl-6 col-lg-7 col-md-7">
-            <div class="card mb-4 overflow-auto" style="height: 948px">
+            <div class="card mb-4 overflow-auto" style="height: 1055px">
                 <div class="card-body">
                     <small class="text-light fw-semibold mb-3">TIMELINE</small>
                     @php

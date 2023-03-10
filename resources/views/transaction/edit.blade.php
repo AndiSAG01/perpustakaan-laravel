@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editedtransaction">
-    Edit Transaksi
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editedtransaction">
+    <i class='bx bxs-edit'></i> Ubah
 </button>
 
 <!-- Modal -->
@@ -8,7 +8,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Transaksi</h5>
+                <p class="modal-title p-3 rounded alert-warning">
+                    <strong>Peringatan!!!</strong>  Pastikan data yang diinputkan lengkap dan tidak ada informasi yang terlewatkan. Hal ini termasuk informasi seperti nama peminjam, judul buku dan lain sebagainya.
+                </p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/transaction/{id}" method="POST" enctype="multipart/form-data">
@@ -102,8 +104,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class='bx bx-arrow-back'></i> Kembali</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-save'></i> Ubah</button>
                 </div>
             </form>
         </div>
