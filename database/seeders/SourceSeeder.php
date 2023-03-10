@@ -20,6 +20,7 @@ class SourceSeeder extends Seeder
             ['body' => 'Pembelian'],
             ['body' => 'Pertukaran'],
             ['body' => 'Ganti rugi'],
+            ['body' => 'Lainnya'],
            
         ];
         Source::insert($data);

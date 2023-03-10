@@ -34,15 +34,22 @@
                         @enderror
                     </div>
                     <div class="col mb-3">
+                        <label for="barcode" class="form-label">No Katalog</label>
+                        <input type="text" id="barcode" class="form-control" value="{{ $book->barcode }}"
+                            name="barcode" placeholder="Enter barcode">
+                        @error('barcode')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col mb-3">
                         <label for="image" class="form-label">image</label>
                         <input type="file" id="image" class="form-control" name="image">
                         @if (@error == true)
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                        @else
-                            <span>Jangan inputkan gambar jika tidak ingin mengubah gambar</span>
                         @endif
+                        <small class="text-warning">Jangan inputkan gambar jika tidak ingin mengubah gambar</small>
                     </div>
 
                     <div class="col mb-3">
@@ -91,15 +98,15 @@
                     <div class="col mb-3">
                         <label for="author" class="form-label">Asal buku</label>
                         <div class="input-group">
-                            <select class="form-select rounded-left" name="source" required>
-                                <option selected>Pilih salah satu </option>
+                            <select class="form-select rounded-left" name="source_id" required>
                                 @foreach ($source as $item)
-                                <option value="{{ $item->body . ' oleh '}}">{{ $item->body }}</option>
+                                <option value="{{ $item->id}}" {{ $item->id == $book->source_id ? 'selected' : '' }}>{{ $item->body }}</option>
                             @endforeach
                             </select>
-                            <input type="text" class="form-control" value="{{ $book->source }}" name="from" placeholder="Oleh..." required>
-                          </div>
+                            <input type="text" class="form-control" name="by" placeholder="Oleh..." value="{{ $book->by }}" required>
+                            </div>
                     </div>
+                    
                     
                     <div class="col mb-3">
                         <label for="stock" class="form-label">stok buku</label>

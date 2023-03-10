@@ -24,8 +24,9 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
+            'barcode' => 'required|min:3|unique:books,barcode,'.$this->id,
             'title' => 'required|min:3',
-            'isbn' => 'required|digits_between:10,13|integer|unique:books,isbn',
+            'isbn' => 'required|digits_between:10,13|integer|unique:books,isbn,'.$this->id,
             'category_id'=> 'required|integer',
             'author' => 'string|required|min:3',
             'publisher' => 'min:3|required',

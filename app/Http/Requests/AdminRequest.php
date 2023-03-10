@@ -24,14 +24,14 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-        'noId' => 'required|integer|digits_between:8,13|unique:users,noId',
+        'noId' => 'required|integer|digits_between:8,13|unique:users,noId,'.$this->id,
         'name' => 'required|string|min:3',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users,email,'.$this->id,
         'password'=> 'min:5',
         'birthday' => 'required',
         'gender'  => 'required|integer',
         'address' => 'required|min:5',
-        'telp' => 'required|string|digits_between:11,12',
+        'telp' => 'required|string|digits_between:11,12|unique:users,telp,'.$this->id,
         ];
     }
 }

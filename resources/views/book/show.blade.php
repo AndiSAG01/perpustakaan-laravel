@@ -6,7 +6,7 @@
     <img src="https://source.unsplash.com/random/1000x200?sig=1" alt="Banner image" class="rounded-top">
 </div>
 <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4 ">
-    <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto border rounded-3">
+    <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
         <img src="{{ $book->image }}" height="130" width="130" alt="user image"
             class="d-block ms-0 ms-sm-4 rounded user-profile-img">
     </div>
@@ -21,7 +21,7 @@
                         <i class='bx bx-food-menu'></i>{{ $book->category->name }}
                     </li>
                     <li class="list-inline-item fw-semibold">
-                        <i class='bx bx-bookmark'></i> {{ $book->isbn }}
+                        <i class='bx bx-credit-card-front'></i> {{ $book->isbn }}
                     </li>
                 </ul>
             </div>
@@ -47,19 +47,23 @@
 <div class="card-body">
     <small class="text-muted text-uppercase">About</small>
     <ul class="list-unstyled mb-4 mt-3">
-        <li class="d-flex mb-3"><i class='bx bxs-book-bookmark'></i><small
-                class="fw-semibold mx-2">Judul Buku:</small> <small>{{ $book->title }}</small></li>
+        <li class="d-flex mb-3"><i class='bx bx-bookmark'></i><small
+                class="fw-semibold mx-2">No Katalog:</small> <small>{{ $book->barcode }}</small></li>
+        <li class="d-flex mb-3"><i class='bx bx-book-bookmark'></i><small
+                class="fw-semibold mx-2">Judul:</small> <small>{{ $book->title }}</small></li>
         <li class="d-flex mb-3"><i class='bx bx-credit-card-front'></i><small
                 class="fw-semibold mx-2">ISBN:</small> <small>{{ $book->isbn }}</small></li>
+        <li class="d-flex mb-3"><i class='bx bx-food-menu'></i><small
+                class="fw-semibold mx-2">Kategori:</small> <small>{{ $book->category->name }}</small></li>
         <li class="d-flex mb-3"><i class='bx bxs-user-rectangle'></i><small
                 class="fw-semibold mx-2">Penulis:</small> <small>{{ $book->author }}</small></li>
-        <li class="d-flex mb-3"><i class="bx bx-flag"></i><small
+        <li class="d-flex mb-3"><i class="bxs bx-flag"></i><small
                 class="fw-semibold mx-2">Penerbit:</small> <small>{{ $book->publisher }}</small></li>
         <li class="d-flex mb-3"><i class='bx bx-calendar-event'></i><small
                 class="fw-semibold mx-2">Tahun terbit:</small> <small>{{ $book->publicationYear }}</small>
         </li>
         <li class="d-flex mb-3"><i class="bx bx-detail"></i><small
-                class="fw-semibold mx-2">Asal:</small> <small>{{ $book->source }}</small></li>
+                class="fw-semibold mx-2">Asal:</small> <small>{{ $book->source->body. ' oleh ' . $book->by }}</small></li>
         <li class="d-flex mb-3"><i class='bx bx-list-ol'></i><small
                 class="fw-semibold mx-2">Stok:</small> <small>{{ $book->stock }}</small></li>
     </ul>

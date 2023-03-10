@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-        'noId' => 'required|integer|digits_between:8,13|unique:users,noId',
+        'noId' => 'required|integer|digits_between:8,13|unique:users,noId,'.$this->id,
         'name' => 'required|string|min:3',
         'email' => 'required|email',
         'password'=> 'min:5',

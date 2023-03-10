@@ -1,14 +1,17 @@
 <x-layout>
     <div class="card-body">
-        <a class="text-primary" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" data-bs-original-title="<span>Pengajuan peminjaman buku dibatasi hingga 2 kali untuk mengurangi penumpukan antrian</span>"><i class='bx bx-bell bx-xl fs-3' ></i></a>
+        <a class="text-primary" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true"
+            title=""
+            data-bs-original-title="<span>Pengajuan peminjaman buku dibatasi hingga 2 kali untuk mengurangi penumpukan antrian</span>"><i
+                class='bx bx-bell bx-xl fs-3'></i></a>
         @if ($message = Session::get('success'))
-        <div class="alert alert-primary alert-block">
-            <strong>{{ $message }}</strong>
-        </div>
-    @elseif ($errors->all())
-        <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
-    @endif
-        
+            <div class="alert alert-primary alert-block">
+                <strong>{{ $message }}</strong>
+            </div>
+        @elseif ($errors->all())
+            <div class="alert alert-danger fw-bold" role="alert">Data is invalid 😣</div>
+        @endif
+
         @include('member.borrow')
         <h5 class="card-header fw-bold text-center">Transaksi Peminjaman Anggota</h5>
         <div class="table-responsive text-nowrap">
@@ -39,9 +42,9 @@
                                 @if ($item->status == 0)
                                     Pinjam
                                 @elseif ($item->status == 1)
-                                Selesai
+                                    Selesai
                                 @else
-                                Menunggu Konfirmasi
+                                    Menunggu Konfirmasi
                                 @endif
                             </td>
                             <td>{{ $item->LateDay ?? '-' }}</td>
@@ -57,6 +60,6 @@
 
             // Closing the alert
             $('.alert').alert('close');
-        }, 3000);
+        }, 5000);
     </script>
 </x-layout>

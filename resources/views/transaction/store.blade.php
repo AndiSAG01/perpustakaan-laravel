@@ -1,6 +1,6 @@
 <div class="mt-3">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storetransaction">
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#storetransaction">
 <i class='bx bx-folder-plus'></i> Tambah Peminjaman
 </button>
 
@@ -8,17 +8,19 @@
 <div class="modal fade" id="storetransaction" tabindex="-1" style="display: none;" aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
-<div class="modal-header">
-    <h5 class="modal-title fw-bolder text-primary" id="exampleModalLabel1">Tambah Peminjaman </h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div><hr>
+    <div class="modal-header">
+        <p class="modal-title p-3 rounded alert-warning">
+            <strong>Peringatan!!!</strong>  Pastikan data yang diinputkan lengkap dan tidak ada informasi yang terlewatkan. Hal ini termasuk informasi seperti nama peminjam, judul buku dan lain sebagainya.
+        </p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
 <form action="/transaction" method="POST">
     @csrf
     <div class="modal-body">
         <div class="mb-3">
                 <label for="user_id" class="form-label">Nama peminjam</label>
                 <select class="form-select form-select" name="user_id" id="user_id">
-                    <option selected value=" ">Pilih salah satu</option>
+                    <option selected disabled value=" ">Pilih salah satu</option>
                     @foreach ($users as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
@@ -31,7 +33,7 @@
         <div class="mb-3">
             <label for="book_id" class="form-label">Buku yang dipinjam</label>
                 <select class="form-select form-select" name="book_id" id="book_id">
-                    <option selected value=" ">Pilih salah satu</option>
+                    <option selected disabled value=" ">Pilih salah satu</option>
                     @foreach ($books as $item)
                     <option value="{{ $item->id }}" @if($item->stock == 0) disabled class="text-danger" @endif>{{ $item->title }} {{ 'Stok : '. $item->stock }}</option>
                     @endforeach

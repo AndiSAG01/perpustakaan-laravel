@@ -23,11 +23,15 @@
     @include('book.store')
 
     <div class="card my-3">
+        <div class="card-header">
+            <h5 class="text-center">Data Buku</h5>
+        </div>
         <div class="card-body table-responsive text-nowrap">
             <table id="myTable" class="table">
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>No Katalog</th>
                         <th>Judul Buku</th>
                         <th>Kategori Buku</th>
                         <th>Stok</th>
@@ -38,6 +42,7 @@
                     @foreach ($books as $no => $item)
                         <tr>
                             <td>{{ ++$no }}</td>
+                            <td>{{ $item->barcode }}</td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->category->name ?? '' }}</td>
                             <td>{{ $item->stock }} exampler</td>

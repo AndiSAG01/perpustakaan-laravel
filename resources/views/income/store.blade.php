@@ -92,7 +92,8 @@
                                 <form action="/income/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i>Hapus</button>
+                                    <button class="btn btn-danger" type="submit"><i
+                                            class="bx bx-trash-alt bx-xs"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -106,6 +107,6 @@
 
             // Closing the alert
             $('.alert').alert('close');
-        }, 3000);
+        }, 5000);
     </script>
 </x-app>

@@ -83,7 +83,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(AdminRequest $request, $id)
     {
         if($request->hasFile('photo')){
             $photo = $request->file('photo');

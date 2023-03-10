@@ -33,7 +33,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, CategoryRequest $request)
     {
         Category::where('id', $id)->update([
             'code' => $request->code,

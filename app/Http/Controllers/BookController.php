@@ -8,6 +8,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Source;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -45,7 +46,24 @@ class BookController extends Controller
     }
 
     public function store(BookRequest $request)
-    {
+    {   
+        // Ambil informasi kategori dari request
+        $categoryId = $request->category_id;
+        $category = Category::find($categoryId);
+
+        // Ambil nomor terakhir yang digunakan untuk kategori ini
+        $lastNo = Book::where('category_id', $categoryId)->max('id');
+
+        // Jika belum ada buku untuk kategori ini, nomor terakhir diinisialisasi dengan 0
+        $no = $lastNo === null ? 0 : $lastNo + 1;
+
+        // Buat nomor barcode berdasarkan informasi kategori dan nomor urut
+        $title = $request->title;
+        $today = Carbon::today()->format('dmy');
+        $barcode = substr($title, 0, 1). $no . '-' . $category->code . '-' . $today;
+
+        // Simpan data buku ke database
+
         $book = new book;
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -55,10 +73,10 @@ class BookController extends Controller
             $book->image = $url;
             $book->publicId = $publicId;
         }
-        $book->barcode = Str::random(8);
+        $book->barcode = $barcode;
         $book->title = $request->title;
         $book->isbn = $request->isbn;
-        $book->source = $request->source;
+        $book->source_id = $request->source_id;
         $book->by = $request->by;
         $book->category_id = $request->category_id;
         $book->author = $request->author;
@@ -87,18 +105,8 @@ class BookController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {   
-        $request->validate([
-            'title' => 'required|min:3',
-            'isbn' => 'required|digits_between:10,13|integer',
-            'category_id'=> 'required|integer',
-            'author' => 'string|required|min:3',
-            'publisher' => 'min:3|required',
-            'publicationYear' => 'Integer|required',
-            'stock' => 'min:1|required|integer',
-        ]);
-
         $book = book::find($id);
         if ($request->hasFile('image')) {            
             $image = $request->file('image');
@@ -112,9 +120,10 @@ class BookController extends Controller
                 Cloudinary()->destroy($request->publicId);
             }
         }
+        $book->barcode = $request->barcode;
         $book->title = $request->title;
         $book->isbn = $request->isbn;
-        $book->source = $request->source;
+        $book->source_id = $request->source_id;
         $book->by = $request->by;
         $book->category_id = $request->category_id;
         $book->author = $request->author;

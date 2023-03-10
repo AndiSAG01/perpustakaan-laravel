@@ -16,7 +16,7 @@ class Book extends Model
         'publicId',
         'category_id',
         'isbn',
-        'source',
+        'source_id',
         'by',
         'title',
         'author',
@@ -42,7 +42,7 @@ class Book extends Model
 
     public function source()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Source::class);
     }
     public function transactions()
     {

@@ -15,6 +15,9 @@
         @include('admin.store')
     </div>
     <div class="card">
+        <div class="card-header">
+            <h5 class="text-center">Data Administrator</h5>
+        </div>
         <div class="card-body">
             <div class="table-responsive text-nowrap">
                 <table id="myTable" class="table">
@@ -61,6 +64,6 @@
 
             // Closing the alert
             $('.alert').alert('close');
-        }, 3000);
+        }, 5000);
     </script>
 </x-app>
