@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->boolean('status');
             $table->date('birthday');
             $table->boolean('gender');
-            $table->string('address');
+            $table->longText('address');
             $table->string('telp');
             $table->rememberToken();
             $table->timestamps();

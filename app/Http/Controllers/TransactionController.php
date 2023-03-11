@@ -104,7 +104,7 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function update(TransactionRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $return = $request->return;
         $formDate = Carbon::createFromDate($return);
@@ -114,12 +114,16 @@ class TransactionController extends Controller
         Transaction::where('id', $id)->update([
             'book_id'=> $request->book_id,
             'user_id'=> $request->user_id,
+            'late_id'=> $request->late_id,
             'entry'=> $request->entry,
             'return'=> $request->return,
-            'lateDay' => $lateday,
-            'description' => $request->description,
             'status'=> $request->status,
+            'lateDay' => $request->lateDay,
+            'description' => $request->description .  '. Total Denda Rp. ' . $lateday * $request->late_id,
         ]);
+
+        // dd($request->all());
+        
         return redirect('transaction')->with('success', 'Update Data Berhasil 🤩');
 
     }

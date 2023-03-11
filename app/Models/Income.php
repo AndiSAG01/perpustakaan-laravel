@@ -11,7 +11,7 @@ class Income extends Model
 
     protected $fillable = [
         'transaction_id',
-        'date',
+        'count',
         'description'
     ];
 

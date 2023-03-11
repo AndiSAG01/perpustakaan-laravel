@@ -13,8 +13,7 @@
 @endif
 <div class="card p-3 mb-3 fw-bold">
 <h3 class="fw-bold">TRANSAKSI</h3>
-Anda sedang mengakses halaman transaksi. Mohon pastikan bahwa tindakan yang Anda lakukan sesuai dengan
-aturan dan kebijakan perpustakaan.
+Halaman ini berisi informasi penting mengenai transaksi perpustakaan. Mohon pastikan bahwa setiap tindakan yang Anda lakukan sesuai dengan ketentuan dan aturan yang berlaku. Kami tidak bertanggung jawab atas segala tindakan yang melanggar ketentuan yang telah ditetapkan.
 </div>
 
 
@@ -147,7 +146,7 @@ aturan dan kebijakan perpustakaan.
                                 </form>
                             @else
                                 <a href="/income/{{ $item->id }}/pay"
-                                    class="btn btn-danger btn-sm"><i class='bx bx-money-withdraw'></i> Bayar</a>
+                                    class="btn btn-danger btn-sm"><i class='bx bx-money'></i> Bayar</a>
                             @endif
                             <a href="/transaction/{{ $item->id }}/show"
                                 class="btn btn-info btn-sm"><i class='bx bx-show-alt'></i> Lihat</a>

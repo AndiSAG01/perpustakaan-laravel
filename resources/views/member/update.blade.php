@@ -107,7 +107,7 @@
                         <div class="mt-2">
                             <button type="submit" class="btn btn-primary me-2">Save changes</button>
                             <button type="reset" class="btn btn-danger me-2">Reset</button>
-                            <a href="/profile/{id}/show" class="btn btn-secondary me-2">Close</a>
+                            <a href="/profile/{{ Auth::user()->id }}/show" class="btn btn-secondary me-2">Close</a>
 
                         </div>
                     </form>

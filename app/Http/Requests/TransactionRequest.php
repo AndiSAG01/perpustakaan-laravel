@@ -24,12 +24,11 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'transactionCode' => '',
             'book_id' => 'required|integer',
             'user_id' => 'required|integer',
             'entry' => 'required|date',
             'return' => 'required|date',
-            'late_id' => 'required',
+            'late_id' => 'required|integer',
            
 
         ];

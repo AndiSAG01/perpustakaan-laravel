@@ -13,17 +13,16 @@
                 </p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/transaction/{id}" method="POST" enctype="multipart/form-data">
+            <form action="/transaction/{{ $transaction->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
+                    <input type="hidden" id="late_id" name="late_id" value="{{ $transaction->late_id }}">
                     <div class="col mb-3">
                         <label for="book_id" class="form-label">Judul Buku</label>
                         <select class="form-select form-select-lg" name="book_id" id="book_id">
-                            <option value="{{ $transaction->book->id }}" selected>{{ $transaction->book->title }}
-                            </option>
                             @foreach ($books as $item)
-                                <option value="{{ $item->id }}">{{ $item->title }}</option>
+                            <option value="{{ $item->id }}" {{ $item->id == $transaction->book->id ? 'selected' : '' }}>{{ $item->title }}</option>
                             @endforeach
                         </select>
                         @error('book_id')
@@ -36,7 +35,7 @@
                             <option value="{{ $transaction->user->id }}" selected>{{ $transaction->user->name }}
                             </option>
                             @foreach ($users as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}" {{ $item->id == $transaction->user->id ? 'selected' : '' }}>{{ $item->name }}</option>
                             @endforeach
                         </select>
                         @error('user_id')
@@ -81,22 +80,14 @@
                     </div>
                     <div class="col mb-3">
                         <label for="lateDay" class="form-label">Telat</label>
-                        <input type="text" id="lateDay" class="form-control"
-                            @if (Carbon\carbon::now() > $transaction->return) value="{{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) . ' Hari' }}"
-                    @else
-                        value="Total Denda Rp. 0" @endif
-                            name="lateDay">
+                        <input type="number" id="lateDay" class="form-control" value="{{ $transaction->lateDay }}" name="lateDay">
                         @error('lateDay')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col mb-3">
                         <label for="description" class="form-label">keterangan</label>
-                        <input type="text" id="description" class="form-control"
-                            @if (Carbon\carbon::now() > $transaction->return) value="Total Denda Rp. {{ carbon\carbon::parse($transaction->return)->diffInDays(Carbon\carbon::now()) * $transaction->late_id }}"
-                    @else
-                        value="Total Denda Rp. 0" @endif
-                            name="description">
+                        <input type="text" id="description" class="form-control" value="{{ $transaction->description}}" name="description">
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

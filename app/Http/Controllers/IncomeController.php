@@ -14,6 +14,18 @@ class IncomeController extends Controller
 {
     public function index()
     {
+        $countMoney = Income::get();
+        $total = 0;
+
+        foreach ($countMoney as $item) {
+            $total += $item->count;
+        }
+
+        $countUsers = Transaction::where([
+            ['status', false],
+            ['lateDay', '>', 0]
+        ])->get();
+
         return view('income.index', [
             'incomes' => Income::orderby('updated_at', 'desc')->get(),
             'transactions' => Transaction::get(),
@@ -21,7 +33,9 @@ class IncomeController extends Controller
             'books' => Book::all(),        
             'lates' => Late::whereId(1)->first(), 
             'telat' => Transaction::Where('lateDay', '>', 0)->orderby('updated_at', 'desc')->get(),
- 
+            'countMoney' => "Rp " . number_format($total, 0, ',', '.'),
+            'countUsers' => $countUsers->count(),
+            'personal' => $countUsers,
         ]);
     }
 
@@ -29,7 +43,7 @@ class IncomeController extends Controller
     {
         Income::create([
             'transaction_id' => $request->transaction_id,
-            'date' => $request->date,
+            'count' => $request->count,
             'description' => $request->description
         ]);
 
@@ -59,7 +73,7 @@ class IncomeController extends Controller
         
         Income::where('id', $id)->update([
             'transaction_id' => $request->transaction_id,
-            'date' => $request->date,
+            'count' => $request->count,
             'description' => $request->description
         ]);
 
@@ -88,7 +102,7 @@ class IncomeController extends Controller
 
     //     $tes = Income::create([
     //         'transaction_id' => $request->transaction_id,
-    //         'date' => $request->date,
+    //         'count' => $request->count,
     //         'description' => $request->description
     //     ]);
     //     dd($tes);

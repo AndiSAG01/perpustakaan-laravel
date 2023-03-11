@@ -30,8 +30,8 @@ class TransactionFactory extends Factory
                 return user::all()->random();
             },
             'late_id'=> 1,
-            'entry'=> now()->subYears($random),
-            'return'=> now()->addMonths($random),
+            'entry'=> now()->addMonths($random),
+            'return'=> now()->subDays($random),
             'lateDay' => 0,
             'description' => 'Total Denda Rp. '. rand(1,100),
             'status'=> rand(0, 3),

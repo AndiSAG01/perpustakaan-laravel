@@ -8,8 +8,7 @@
     @endif
     <div class="card p-3 mb-3 fw-bold">
         <h3 class="fw-bold">ADMINISTRATOR</h3>
-        Anda sedang mengakses halaman administrator. Mohon pastikan bahwa tindakan yang Anda lakukan sesuai dengan
-        aturan dan kebijakan perpustakaan.
+        Mohon berhati-hati dalam melakukan akses pada halaman ini. Segala tindakan yang tidak sesuai dengan kebijakan perpustakaan akan dikenakan sanksi dan dapat mempengaruhi kelayakan penggunaan fasilitas perpustakaan di masa yang akan datang.
     </div>
     <div class="col mb-3">
         @include('admin.store')

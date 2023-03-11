@@ -15,7 +15,7 @@
 
     <!-- myprofile -->
     <li class="menu-item ">
-        <a href="/profile/{id}/show" class="menu-link">
+        <a href="/profile/{{ Auth::user()->id }}/show" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user"></i>
             <div data-i18n="myprofile">Profil Saya</div>
         </a>

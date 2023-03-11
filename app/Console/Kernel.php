@@ -15,9 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('model:prune')->everyMinute();
-        $schedule->command('update:transaction')->everyMinute();
-        $schedule->command('delete:reject')->everyMinute();
+        $schedule->command('model:prune')->everyTwoMinutes();
+        $schedule->command('update:transaction')->everyTwoMinutes();
+        $schedule->command('delete:reject')->everyTwoMinutes();
         // $schedule->command('inspire')->hourly();
     }
 

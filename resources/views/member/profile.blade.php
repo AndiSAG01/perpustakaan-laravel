@@ -79,7 +79,7 @@
 
                     </div>
                     <div class="mt-2">
-                        <a href="/profile/{id}/edit" class="btn btn-warning me-2">Edit profile</a>
+                        <a href="/profile/{{ Auth::user()->id}}/edit" class="btn btn-warning me-2">Edit profile</a>
                         <a href="/print" class="btn btn-primary">Cetak Kartu</a>
                         <a href="/dashboard" class="btn btn-secondary me-2">Close</a>
                     </div>
