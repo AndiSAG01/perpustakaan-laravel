@@ -25,6 +25,7 @@ use App\Http\Controllers\TransactionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/welcome', 'welcome');
 
 Auth::routes(['verify' => true]);
 

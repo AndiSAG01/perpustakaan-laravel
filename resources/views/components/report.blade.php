@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'DATA LAPORAN SI PERPUS' }}</title>
+    <title>{{ $title }} | Perpustakaan SMA Negeri 1 Kota Jambi</title>
 
     <meta name="description" content="" />
 
@@ -268,7 +268,6 @@
                 dom: 'QBfrtip',
                 buttons: [
                     'copy', 'excel', 'pdf', 'print',
-
                 ]
             });
         });

@@ -26,13 +26,18 @@ class IncomeController extends Controller
             ['lateDay', '>', 0]
         ])->get();
 
+        $userlate = Transaction::Where([
+            ['lateDay', '>', 0],
+            ['status', false]
+        ])->orderby('updated_at', 'desc')->get();
+
         return view('income.index', [
             'incomes' => Income::orderby('updated_at', 'desc')->get(),
             'transactions' => Transaction::get(),
             'users' => User::all(),
             'books' => Book::all(),        
             'lates' => Late::whereId(1)->first(), 
-            'telat' => Transaction::Where('lateDay', '>', 0)->orderby('updated_at', 'desc')->get(),
+            'userlate' => $userlate,
             'countMoney' => "Rp " . number_format($total, 0, ',', '.'),
             'countUsers' => $countUsers->count(),
             'personal' => $countUsers,

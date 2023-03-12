@@ -25,7 +25,7 @@ class IncomeRequest extends FormRequest
     {
         return [
         'transaction_id' => 'required|integer',
-        'date' => 'required|date', 
+        'count' => 'required|integer', 
         'description' => 'required|max:70'
         ];
     }

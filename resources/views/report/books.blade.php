@@ -1,4 +1,5 @@
 <x-report>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="card-body d-print">
         <h3 class="card-header fw-bold text-center">{{ $title }}</h3>
         <div class="table-responsive text-nowrap" id="printableArea">
@@ -33,13 +34,4 @@
             </table>
         </div>
     </div>
-    <script>
-        function printPageArea(areaID) {
-            var printContent = document.getElementById(areaID).innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
-    </script>
 </x-report>

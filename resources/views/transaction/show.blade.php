@@ -274,7 +274,6 @@
                                 diKembalikan:</small>
                             <small>{{ \App\Models\Transaction::where([['book_id', $transaction->book->id], ['status', 1]])->count() }}</small>
                         </li>
-
                     </ul>
                 </div>
             </div>

@@ -1,106 +1,236 @@
 <x-app>
-    <div class="card-body">
-        <div class="col-xxl">
-            <div class="card mb-4">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Edit Data Bayar Denda</h5> <small class="text-muted float-end">Merged input
-                        group</small>
-                </div>
-                <div class="card-body">
-                    <form action="/income/{{ $income->id }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                Lengkap</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-food-menu"></i></span>
-                                    <select class="form-select" name="transaction_id" required>
-                                        <option value="{{ $income->transaction->id }}" selected>
-                                            {{ $income->transaction->user->name }}</option>
-                                        @foreach ($transactions as $item)
-                                            <option value="{{ $item->user->id }}">{{ $item->user->name }} (
-                                                {{ $item->user->noId }} )</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('transaction_id')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-date">Tanggal
-                                Pembayaran</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-date2" class="input-group-text"><i
-                                            class="bx bx-receipt"></i></span>
-                                    <input type="date" class="form-control" id="basic-icon-default-date"
-                                        name="date" value="{{ $income->date }}">
-                                </div>
-                                @error('date')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-date">Keterangan</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-date2" class="input-group-text"><i
-                                            class="bx bx-hash"></i></span>
-                                    <textarea class="form-control" name="description" id="description" rows="4">{{ $income->description }}</textarea>
-                                </div>
-                                @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </div>
-                    </form>
+    <div class="flex-grow-1 container-p">
+    <div class="row">
+    <!-- User Sidebar -->
+    <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+    <!-- User Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="user-avatar-section">
+                <div class="mb-5 d-flex align-items-center flex-column">
+                    <img class="img-fluid rounded my-4" src="{{ $income->transaction->user->photo }}" height="110"
+                        width="110" alt="User avatar">
+                    <div class="user-info text-center">
+                        <h4 class="mb-2">{{ $income->transaction->user->name }}</h4>
+                        <span class="badge bg-label-secondary">
+                            @if ($income->transaction->user->isAdmin == 0)
+                                Anggota Perpustakaan
+                            @else
+                                Administrator
+                            @endif
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h5 class="card-header">Data Denda</h5>
-        <div class="table-responsive text-nowrap">
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama Lengkap</th>
-                        <th>Tanggal Bayar</th>
-                        <th>Keterangan</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @foreach ($incomes as $no => $item)
-                        <tr>
-                            <td>{{ ++$no }}</td>
-                            <td>{{ $item->transaction->user->name }}</td>
-                            <td>{{ $item->date }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td class="d-flex justify-content-center gap-1"><a href="/income/{{ $item->id }}/edit"
-                                    class="btn btn-warning"><i class="bx bx-edit-alt bx-xs"></i>Edit</a>
-                                <form action="/income/{{ $item->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"><i class="bx bx-trash-alt bx-xs"></i>Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <h5 class="pt-3 mb-4 fw-bold">Detail user</h5>
+            <div class="info-container">
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Nama:</span>
+                        <span>{{ $income->transaction->user->name }}</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Email:</span>
+                        <span>{{ $income->transaction->user->email }}</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Status:</span>
+                        <span>
+                            @if ($income->transaction->user->status == 0)
+                                Siswa/i
+                            @elseif ($income->transaction->user->status == 1)
+                                Guru
+                            @else
+                                Administrator
+                            @endif
+                        </span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Nomor Id:</span>
+                        <span>{{ $income->transaction->user->noId }}</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Jenis Kelamin:</span>
+                        <span>
+                            @if ($income->transaction->user->status == 0)
+                                Laki-laki
+                            @else
+                                Perempuan
+                            @endif
+                        </span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Tanggal Lahir:</span>
+                        <span>{{ $income->transaction->user->birthday }}</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Telp/WhatsApps:</span>
+                        <span>
+                            
+                            {{ $income->transaction->user->telp }}</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fw-bold me-2">Alamat:</span>
+                        <span>{{ $income->transaction->user->address }}</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</x-app>
+    <div class="card mb-4">
+        <h5 class="card-header fw-bold">Catatan Transaksi</h5>
+        <div class="card-body info-container">
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Nama Peminjam:</span>
+                    <span>{{ $income->transaction->user->name }}</span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Buku yang dipinjam:</span>
+                    <span>{{ $income->transaction->book->title }}</span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Tanggal Pinjam:</span>
+                    <span>{{ $income->transaction->entry }}</span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Tanggal Kembali:</span>
+                    <span>{{ $income->transaction->return }}</span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Total Telat:</span>
+                    <span>{{ $income->transaction->lateDay . ' hari' }}</span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Status Transaksi:</span>
+                    <span>
+                        @if ($income->status == 0)
+                        Pinjam
+                        @elseif ($income->status == 1)
+                        Selesai                        
+                        @endif
+                    </span>
+                </li>
+                <li class="mb-3">
+                    <span class="fw-bold me-2">Keterangan:</span>
+                    <span>{{ $income->description }}</span>
+                </li>  
+            </ul>
+        </div>
+    </div>
+    <!-- /Plan Card -->
+    </div>
+    <!--/ User Sidebar -->
+    
+    
+    <!-- User Content -->
+    <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
+    <!-- Project table -->
+    <div class="card mb-4">
+        <h3 class="card-header fw-bold">Data Denda</h3>
+        <div class="card-body">
+            <form action="/income/{{ $income->id }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="mb-3">
+                    <label class="col-form-label" for="basic-icon-default-fullname">Nama
+                        Lengkap</label>
+                    <div class="col-sm">
+                        <div class="input-group input-group-merge">
+                            <select class="form-select" name="transaction_id">
+                                <option value="{{ $income->id }}" selected>{{ $income->transaction->user->name }}
+                                </option>
+                            </select>
+                        </div>
+                        @error('transaction_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label" for="basic-icon-default-date">Denda</label>
+                    <div class="col-sm">
+                        <div class="input-group input-group-merge">
+                            <input type="number" class="form-control" id="basic-icon-default-date"
+                                name="count"
+                                value="{{ $income->count }}">
+                        </div>
+                        @error('count')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label" for="basic-icon-default-date">Keterangan</label>
+                    <div class="col-sm">
+                        <div class="input-group input-group-merge">
+                            <textarea class="form-control" name="description" rows="4">{{ $income->description }}</textarea>
+                        </div>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+    
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /Project table -->
+    
+    <!-- Activity Timeline -->
+    <div class="card mb-4 overflow-auto" style="height: 550px">
+        <div class="card-body">
+            <small class="text-light fw-semibold mb-3">TIMELINE</small>
+            @php
+                $transactionBook = \App\Models\Transaction::where('user_id', $income->transaction->user->id)
+                    ->orderby('created_at', 'Desc')
+                    ->get();
+            @endphp
+            <ul class="d-inline">
+                <ul>
+                    @foreach ($transactionBook as $item)
+                        <li class="timeline-item timeline-item-transparent mb-4">
+                            <div class="timeline-event">
+                                <div class="timeline-header mb-1">
+                                    <h6 class="mb-0">{{ $item->user->name }}</h6>
+                                </div>
+                                @if ($item->status == 0)
+                                    <strong class="mb-2 text-primary">Dipinjam <small
+                                            class="text-muted">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small></strong>
+                                @elseif ($item->status == 1)
+                                    <strong class="mb-2 text-success">Dikembalikan <small
+                                            class="text-muted">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small></strong>
+                                @elseif ($item->status == 2)
+                                    <strong class="mb-2 text-warning">Permintaan pinjam <small
+                                            class="text-muted">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small></strong>
+                                @elseif ($item->status == 3)
+                                    <strong class="mb-2 text-danger">Permintaan ditolak <small
+                                            class="text-muted">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small></strong>
+                                @endif
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <h6 class="mb-0">{{ $item->description }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+    setTimeout(function() {
+    
+    // Closing the alert
+    $('.alert').alert('close');
+    }, 5000);
+    </script>
+    </x-app>
+    

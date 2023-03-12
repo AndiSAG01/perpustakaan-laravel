@@ -1,4 +1,5 @@
 <x-report>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="card-body">
         <h3 class="card-header fw-bold text-center">{{ $title }}</h3>
         <div class="table-responsive text-nowrap" id="printableArea">
