@@ -15,7 +15,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <h5 class="text-center">Data Administrator</h5>
+            <h5 class="text-center">Data Admin</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive text-nowrap">
